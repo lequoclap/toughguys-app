@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SPORT_WEIGHT_MAP } from 'src/app/const';
+import { Activity, Athlete } from 'src/app/datatypes/APIDataType';
+import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
 
 @Component({
@@ -9,8 +12,10 @@ import { AthleteService } from 'src/app/services/athlete.service';
 })
 export class DashboardComponent {
 
-  public athleteData: any[] = [];
-  public errorMessage = 'This is a test message';
+  public athletesData: Athlete[] = [];
+  public errorMessage = '';
+  public totalDistance = 0;
+  public totalDistanceStr = '';
 
   constructor(
     private athleteService: AthleteService,
@@ -23,7 +28,27 @@ export class DashboardComponent {
     console.log("load athlete data")
     this.athleteService.getDashboardData('2022-12-01').subscribe({
       next: (res) => {
-        this.athleteData = res.data
+        this.athletesData = res.data;
+
+        //adjust data
+        this.athletesData.forEach((item) => {
+          //filter to remove unqualified SportType
+          item.activities = item.activities.filter((activity) => {
+            return (Object.values(SportType).includes(activity.sportType))
+          })
+          item.activities.forEach((activity) => {
+            // add weight
+            activity.distance = activity.distance as number * SPORT_WEIGHT_MAP.get(activity.sportType)!;
+            // count total distance
+            this.totalDistance += activity.distance;
+            activity.distance = new Intl.NumberFormat('en-US').format(activity.distance as number);
+          })
+        })
+
+        this.totalDistanceStr = new Intl.NumberFormat('en-US').format(this.totalDistance);
+
+        // rank athlete by distance
+        //TODO
       },
       error: (error) => {
         console.error(error)

@@ -6,19 +6,27 @@ export declare interface GetDashBoardRequest {
 
 export declare interface GetDashboardResponse {
     status: string,
-    data:
-    {
-        athlete: {
-            id: string,
-            name: string,
-        },
-        activities: {
-            id: string,
-            distance: number,
-            sportType: SportType
-        }[],
-    }[]
+    data: Athlete[]
 }
+
+export declare interface Athlete {
+
+    athlete: {
+        id: string,
+        name: string,
+        imgURL: string,
+    },
+    activities: Activity[]
+}
+
+
+export declare interface Activity {
+    id: string,
+    distance: number | string,
+    sportType: SportType
+}
+
+
 
 export declare interface GenerateTokenRequest {
     code: string,

@@ -1,65 +1,32 @@
 <div class="container">
-    <h5> Welcome to Toughguys Dashboard</h5>
+    <h1>DASHBOARD</h1>
 
+    <h2> START: 2022-12-01</h2>
+    <h2> END: 2023-02-01</h2>
+
+    <h2> TOTAL DISTANCE: {{totalDistanceStr}}km</h2>
     <div class="text-center">
-        <button class="btn btn-delete" (click)="onSync()">
-            sync data
+        <button class="btn btn-strava" (click)="onSync()">
+            Sync data
         </button>
     </div>
 
-    {{ errorMessage }}
+    <span>
+        <p class="error-message">{{ errorMessage }}</p>
+    </span>
 
     <div>
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0"
-                aria-valuemax="1000"></div>
-            <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30"
-                aria-valuemin="0" aria-valuemax="1000"></div>
-            <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-                aria-valuemax="1000"></div>
-        </div>
-        1000km
+        <div *ngFor="let athlete of athletesData, let i = index">
+            <div>
+                <p> {{athlete.athlete.name}}</p>
+                <img [src]="athlete.athlete.imgURL" />
 
-        <div class="container">
-            <div class="row">
-                <div class="col-3">
-                    icon
-                </div>
-                <div class="col-6">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    100km
-                </div>
             </div>
-
-            <div class="row">
-                <div class="col-3">
-                    icon
-                </div>
-                <div class="col-6">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15"
-                            aria-valuemin="0" aria-valuemax="60"></div>
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="10"
-                            aria-valuemin="0" aria-valuemax="60"></div>
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="15"
-                            aria-valuemin="0" aria-valuemax="60"></div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    60km
-                </div>
+            <div *ngFor="let activity of athlete.activities">
+                <span>{{activity.sportType}} :</span>
+                <span>{{activity.distance}} km </span>
             </div>
         </div>
-
 
     </div>
 
