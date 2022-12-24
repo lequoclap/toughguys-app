@@ -23,7 +23,30 @@ export class DashboardComponent {
   }
 
   ngOnInit(): void {
-    console.log("this is on init");
+    this.getDashboard();
+  }
+
+  onSync(): void {
+    //sync
+    this.athleteService.syncAthleteData().subscribe({
+      // sync data
+      next: (res) => {
+        this.errorMessage = res.message;
+        console.log(res)
+        // getDashboard again
+        if (res.statusCode == 'success') {
+          this.getDashboard();
+        }
+
+      },
+      error: (error) => {
+        console.error(error)
+        this.errorMessage = 'Can not sync data! ' + error;
+      }
+    })
+  }
+
+  private getDashboard(): void {
     // load the dashboard
     console.log("load athlete data")
     this.athleteService.getDashboardData('2022-12-01').subscribe({
@@ -41,11 +64,11 @@ export class DashboardComponent {
             activity.distance = activity.distance as number * SPORT_WEIGHT_MAP.get(activity.sportType)!;
             // count total distance
             this.totalDistance += activity.distance;
-            activity.distance = new Intl.NumberFormat('en-US').format(activity.distance as number);
+            activity.distance = Math.floor(activity.distance / 1000);
           })
         })
 
-        this.totalDistanceStr = new Intl.NumberFormat('en-US').format(this.totalDistance);
+        this.totalDistanceStr = new Intl.NumberFormat('en-US').format(this.totalDistance / 1000);
 
         // rank athlete by distance
         //TODO
@@ -57,24 +80,7 @@ export class DashboardComponent {
         this.router.navigate(['/login']);
       }
     })
+
   }
-
-  onSync(): void {
-    //sync
-    this.athleteService.syncAthleteData().subscribe({
-      // sync data
-      next: (res) => {
-        this.errorMessage = res.message;
-        console.log(res)
-        // getDashboard again
-
-      },
-      error: (error) => {
-        console.error(error)
-        this.errorMessage = 'Can not sync data! ' + error;
-      }
-    })
-  }
-
 
 }

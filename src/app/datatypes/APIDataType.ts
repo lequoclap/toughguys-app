@@ -22,7 +22,7 @@ export declare interface Athlete {
 
 export declare interface Activity {
     id: string,
-    distance: number | string,
+    distance: number,
     sportType: SportType
 }
 
