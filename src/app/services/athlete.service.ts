@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { config } from '../config';
 import { GenerateTokenResponse, GetDashboardResponse } from '../datatypes/APIDataType';
@@ -29,7 +29,7 @@ export class AthleteService {
     const url = config.toughGuysApi.host + config.toughGuysApi.syncData;
     const headers = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
         'Authorization': this.accessToken,
       })
     };
@@ -49,7 +49,7 @@ export class AthleteService {
     // Using the POST method
     const headers = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
         'Authorization': this.accessToken,
       })
     };
@@ -67,20 +67,23 @@ export class AthleteService {
    * @param code 
    * @returns 
    */
-  generateToken(code: string): Observable<GenerateTokenResponse> {
+  generateToken(code: string): Observable<any> {
     // url to get dashboard data
     const url = config.toughGuysApi.host + config.toughGuysApi.generateToken;
+
+    console.log(url);
+    console.log(code);
+
     // Using the POST method
     const headers = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': this.accessToken,
+        'Content-Type': 'application/json',
       })
     };
     return this.http.post(url,
       {
         'code': code,
       },
-      headers) as Observable<GenerateTokenResponse>
+      headers).pipe(map((res) => res))
   }
 }
