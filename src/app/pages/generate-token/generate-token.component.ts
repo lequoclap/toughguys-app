@@ -42,6 +42,7 @@ export class GenerateTokenComponent {
         this.router.navigate(['/']);
       },
       error: (error) => {
+        console.log(error)
         this.errorMessage = JSON.stringify(error)
       }
     }

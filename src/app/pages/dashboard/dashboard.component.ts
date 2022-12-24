@@ -23,10 +23,10 @@ export class DashboardComponent {
     console.log("load athlete data")
     this.athleteService.getDashboardData('2022-12-01').subscribe({
       next: (res) => {
-        console.log(res);
         this.athleteData = res.data
       },
       error: (error) => {
+        console.error(error)
         this.errorMessage = 'Can not load data! ' + error;
         //redirect to login
         this.router.navigate(['/login']);
@@ -39,11 +39,14 @@ export class DashboardComponent {
     this.athleteService.syncAthleteData().subscribe({
       // sync data
       next: (res) => {
+        this.errorMessage = res.message;
+        console.log(res)
         // getDashboard again
 
       },
       error: (error) => {
-        this.errorMessage = 'Can not load data! ' + error;
+        console.error(error)
+        this.errorMessage = 'Can not sync data! ' + error;
       }
     })
   }

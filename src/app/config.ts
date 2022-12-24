@@ -4,7 +4,7 @@ export const config = {
     toughGuysApi: {
         stage: 'dev',
         host: env.toughGuysApiHost,
-        syncData: '/synData',
+        syncData: '/syncData',
         generateToken: '/generateToken',
         dashboard: '/dashboard'
     },
