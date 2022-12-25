@@ -16,7 +16,8 @@ export declare interface Athlete {
         name: string,
         imgURL: string,
     },
-    activities: Activity[]
+    activities: Activity[],
+    totalDistance: number
 }
 
 
