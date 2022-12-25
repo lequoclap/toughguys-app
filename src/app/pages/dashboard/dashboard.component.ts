@@ -5,7 +5,7 @@ import { SPORT_WEIGHT_MAP } from 'src/app/const';
 import { Activity, Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
-import { faBicycle, faPersonHiking, faPersonSwimming, faRunning, faSnowboarding } from '@fortawesome/free-solid-svg-icons';
+import { faBicycle, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +25,7 @@ export class DashboardComponent {
   faSnowboard = faSnowboarding;
   faRun = faRunning;
   faSwim = faPersonSwimming;
+  faAlpineSki = faPersonSkiing;
 
   public progressMap = new Map();
   public progress = {
@@ -33,6 +34,7 @@ export class DashboardComponent {
     hike: 0,
     run: 0,
     swim: 0,
+    alpineSki: 0,
   }
 
   constructor(
@@ -99,6 +101,7 @@ export class DashboardComponent {
           hike: this.progressMap.get(SportType.Hike) / 1000 / this.challengeGoal * 100,
           run: this.progressMap.get(SportType.Run) / 1000 / this.challengeGoal * 100,
           swim: this.progressMap.get(SportType.Swim) / 1000 / this.challengeGoal * 100,
+          alpineSki: this.progressMap.get(SportType.AlpineSki) / 1000 / this.challengeGoal * 100,
         }
 
         console.log(this.progress)

@@ -26,6 +26,10 @@
                     aria-valuemax="1000">
                     <fa-icon [icon]="faSnowboard"></fa-icon>
                 </div>
+                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="progress.alpineSki"
+                    aria-valuemax="1000">
+                    <fa-icon [icon]="faAlpineSki"></fa-icon>
+                </div>
                 <div class="progress-bar bg-warning" role="progressbar" [style.width.%]="progress.swim"
                     aria-valuemax="1000">
                     <fa-icon [icon]="faSwim"></fa-icon>
@@ -75,6 +79,10 @@
                     </div>
                     <div *ngIf="activity.sportType === 'Hike'" class="row">
                         <div class="col-6"> <fa-icon [icon]="faHike"></fa-icon>: </div>
+                        <div class="col-6">{{activity.distance}} km</div>
+                    </div>
+                    <div *ngIf="activity.sportType === 'AlpineSki'" class="row">
+                        <div class="col-6"> <fa-icon [icon]="faAlpineSki"></fa-icon>: </div>
                         <div class="col-6">{{activity.distance}} km</div>
                     </div>
                 </div>
