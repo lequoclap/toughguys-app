@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SPORT_WEIGHT_MAP } from 'src/app/const';
@@ -34,7 +35,7 @@ export class DashboardComponent {
         this.errorMessage = res.message;
         console.log(res)
         // getDashboard again
-        if (res.statusCode == 'success') {
+        if (res.statusCode == 200) {
           this.getDashboard();
         }
 
@@ -73,11 +74,14 @@ export class DashboardComponent {
         // rank athlete by distance
         //TODO
       },
-      error: (error) => {
-        console.error(error)
-        this.errorMessage = 'Can not load data! ' + error;
-        //redirect to login
-        this.router.navigate(['/login']);
+      error: (e: HttpErrorResponse) => {
+        console.error(e)
+        this.errorMessage = 'Can not load data! ';
+        //redirect to login if it is unauthozied error
+        if (e.status == 401 || e.status == 403 || e.status == 500) {
+          this.router.navigate(['/login']);
+        }
+
       }
     })
 

@@ -1,8 +1,9 @@
 <div class="container">
     <h1>DASHBOARD</h1>
 
-    <h2> START: 2022-12-01</h2>
-    <h2> END: 2023-02-01</h2>
+    <!-- <h3> -->
+    <p>2022-12-01 2023-02-01</p>
+    <!-- </h3> -->
 
     <h2> TOTAL DISTANCE: {{totalDistanceStr}}km</h2>
     <div class="text-center">
@@ -19,7 +20,7 @@
         <div *ngFor="let athlete of athletesData, let i = index">
             <div>
                 <p> {{athlete.athlete.name}}</p>
-                <img [src]="athlete.athlete.imgURL" />
+                <img [src]="athlete.athlete.imgURL" width="100" />
 
             </div>
             <div *ngFor="let activity of athlete.activities">
