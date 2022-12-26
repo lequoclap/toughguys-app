@@ -17,8 +17,14 @@ export class DashboardComponent {
   public athletesData: Athlete[] = [];
   public errorMessage = '';
   public totalDistance = 0;
-  public challengeGoal = 1000;
-  public challengeName = "Chao xuan 2023";
+  public countdownText = '';
+
+  public challenge = {
+    goal: 1000,
+    name: 'Chao xuan 2023',
+    start: '2022-12-01',
+    end: '2023-02-01'
+  }
 
   faRide = faBicycle;
   faHike = faPersonHiking;
@@ -107,19 +113,14 @@ export class DashboardComponent {
         this.progressMap = this.progressMap;
 
         this.progress = {
-          ride: this.progressMap.get(SportType.Ride) / 1000 / this.challengeGoal * 100,
-          snowboard: this.progressMap.get(SportType.Snowboard) / 1000 / this.challengeGoal * 100,
-          hike: this.progressMap.get(SportType.Hike) / 1000 / this.challengeGoal * 100,
-          run: this.progressMap.get(SportType.Run) / 1000 / this.challengeGoal * 100,
-          swim: this.progressMap.get(SportType.Swim) / 1000 / this.challengeGoal * 100,
-          alpineSki: this.progressMap.get(SportType.AlpineSki) / 1000 / this.challengeGoal * 100,
+          ride: this.progressMap.get(SportType.Ride) / 1000 / this.challenge.goal * 100,
+          snowboard: this.progressMap.get(SportType.Snowboard) / 1000 / this.challenge.goal * 100,
+          hike: this.progressMap.get(SportType.Hike) / 1000 / this.challenge.goal * 100,
+          run: this.progressMap.get(SportType.Run) / 1000 / this.challenge.goal * 100,
+          swim: this.progressMap.get(SportType.Swim) / 1000 / this.challenge.goal * 100,
+          alpineSki: this.progressMap.get(SportType.AlpineSki) / 1000 / this.challenge.goal * 100,
         }
 
-        console.log(this.progress)
-
-
-        // rank athlete by distance
-        //TODO
       },
       error: (e: HttpErrorResponse) => {
         console.error(e)
@@ -131,6 +132,12 @@ export class DashboardComponent {
 
       }
     })
+
+  }
+
+  private countdown(): void {
+
+
 
   }
 
