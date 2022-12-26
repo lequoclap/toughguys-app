@@ -5,7 +5,7 @@ import { SPORT_WEIGHT_MAP } from 'src/app/const';
 import { Activity, Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
-import { faBicycle, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding } from '@fortawesome/free-solid-svg-icons';
+import { faBicycle, faCrown, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +26,8 @@ export class DashboardComponent {
   faRun = faRunning;
   faSwim = faPersonSwimming;
   faAlpineSki = faPersonSkiing;
+  faCrown = faCrown;
+  faTrophy = faTrophy;
 
   public progressMap = new Map();
   public progress = {
@@ -91,7 +93,7 @@ export class DashboardComponent {
 
             // count total distance
             this.totalDistance += activity.distance;
-            
+
             // athletes total distance
             item.totalDistance += activity.distance;
 
