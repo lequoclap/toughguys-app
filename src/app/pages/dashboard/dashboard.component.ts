@@ -2,10 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SPORT_WEIGHT_MAP } from 'src/app/const';
-import { Activity, Athlete } from 'src/app/datatypes/APIDataType';
+import { Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
-import { faBicycle, faCrown, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { faCrown, faPersonBiking, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +26,7 @@ export class DashboardComponent {
     end: '2023-02-01'
   }
 
-  faRide = faBicycle;
+  faRide = faPersonBiking;
   faHike = faPersonHiking;
   faSnowboard = faSnowboarding;
   faRun = faRunning;
@@ -106,7 +106,7 @@ export class DashboardComponent {
             activity.distance = Math.floor(activity.distance / 1000);
           })
         })
-
+        // ranking by total distance
         this.athletesData.sort((a, b) => b.totalDistance - a.totalDistance);
 
         this.totalDistance = Math.floor(this.totalDistance / 1000);
