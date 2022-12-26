@@ -6,7 +6,7 @@
 
         <app-count-down-timer [endDate]="challenge.end "></app-count-down-timer>
 
-        <h4 class="progress-text"> {{totalDistance | number}}/{{challenge.goal |number}} km</h4>
+        <h4 class="progress-text"> {{totalDistance | number}} / {{challenge.goal |number}} km</h4>
         <!-- progress bar -->
         <div class="progress-box">
             <div class="progress" style="height: 30px;">
@@ -107,6 +107,7 @@
 
     <div class="text-center">
         <button class="btn btn-sync" (click)="onSync()">
+            <fa-icon [icon]="faSync"></fa-icon>
             Sync data
         </button>
         <p class="error-message">{{ errorMessage }}</p>

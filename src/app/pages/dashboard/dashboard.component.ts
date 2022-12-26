@@ -5,7 +5,7 @@ import { SPORT_WEIGHT_MAP } from 'src/app/const';
 import { Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
-import { faCrown, faPersonBiking, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { faCrown, faPersonBiking, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faSync, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,6 +34,7 @@ export class DashboardComponent {
   faAlpineSki = faPersonSkiing;
   faCrown = faCrown;
   faTrophy = faTrophy;
+  faSync = faSync;
 
   public progressMap = new Map();
   public progress = {
