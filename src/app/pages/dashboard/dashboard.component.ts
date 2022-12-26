@@ -104,7 +104,7 @@ export class DashboardComponent {
             // athletes total distance
             item.totalDistance += activity.distance;
 
-            activity.distance = Math.floor(activity.distance / 1000);
+            activity.distance = Math.round(activity.distance / 100) / 10;
           })
         })
         // ranking by total distance
