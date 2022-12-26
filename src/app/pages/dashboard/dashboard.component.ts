@@ -75,6 +75,9 @@ export class DashboardComponent {
 
         //adjust data
         this.athletesData.forEach((item) => {
+          // init athlete total distance
+          item.totalDistance = 0
+
           //filter to remove unqualified SportType
           item.activities = item.activities.filter((activity) => {
             return (Object.values(SportType).includes(activity.sportType))
@@ -88,9 +91,15 @@ export class DashboardComponent {
 
             // count total distance
             this.totalDistance += activity.distance;
+            
+            // athletes total distance
+            item.totalDistance += activity.distance;
+
             activity.distance = Math.floor(activity.distance / 1000);
           })
         })
+
+        this.athletesData.sort((a, b) => b.totalDistance - a.totalDistance);
 
         this.totalDistance = Math.floor(this.totalDistance / 1000);
         this.progressMap = this.progressMap;
