@@ -9,6 +9,7 @@ export class CountDownTimerComponent {
 
   @Input() endDate!: string;
 
+  isOver = false;
   date: any;
   now: any;
 
@@ -46,24 +47,33 @@ export class CountDownTimerComponent {
   }
 
   ngAfterViewInit() {
-
     setInterval(() => {
       this.tickTock();
       this.difference = this.targetTime - this.now;
+      if (this.difference < 0) {
+        this.isOver = true;
+      }
       this.difference = this.difference / (1000 * 60 * 60 * 24);
-
       !isNaN(this.days.nativeElement.innerText)
-        ? (this.days.nativeElement.innerText = Math.floor(this.difference))
+        ? (this.days.nativeElement.innerText = Math.max(Math.floor(this.difference), 0))
         : (this.days.nativeElement.innerHTML = `<img src="https://i.gifer.com/VAyR.gif" />`);
     }, 1000);
   }
 
   tickTock() {
-    this.date = new Date();
-    this.now = this.date.getTime();
-    this.days.nativeElement.innerText = Math.floor(this.difference);
-    this.hours.nativeElement.innerText = 23 - this.date.getHours();
-    this.minutes.nativeElement.innerText = 60 - this.date.getMinutes();
-    this.seconds.nativeElement.innerText = 60 - this.date.getSeconds();
+    if (!this.isOver) {
+      this.date = new Date();
+      this.now = this.date.getTime();
+      this.days.nativeElement.innerText = Math.floor(this.difference);
+      this.hours.nativeElement.innerText = 23 - this.date.getHours();
+      this.minutes.nativeElement.innerText = 60 - this.date.getMinutes();
+      this.seconds.nativeElement.innerText = 60 - this.date.getSeconds();
+    } else {
+      this.days.nativeElement.innerText = 0;
+      this.hours.nativeElement.innerText = 0;
+      this.minutes.nativeElement.innerText = 0;
+      this.seconds.nativeElement.innerText = 0;
+    }
+
   }
 }
