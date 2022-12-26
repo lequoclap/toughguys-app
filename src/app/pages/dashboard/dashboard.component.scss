@@ -10,11 +10,18 @@ hr {
     cursor: pointer;
     font-weight: bold;
     background-color: orange;
+    opacity: 90%;
 }
 
 .progress-box {
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.progress-text {
+    color: #d9a74a;
+    font-weight: 800;
+    font-size: x-large;
 }
 
 .icon-gold {
@@ -27,4 +34,9 @@ hr {
 
 .icon-bronze {
     color: #CD7F32;
+}
+
+.weight {
+    margin-left: 3px;
+    font-size: 10px
 }

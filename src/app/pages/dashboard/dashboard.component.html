@@ -1,12 +1,12 @@
 <div class="container">
-
     <div class="text-center">
         <h1>DASHBOARD</h1>
 
-        <app-count-down-timer [endDate]="challenge.end "></app-count-down-timer>
-        <!-- </h3> -->
+        <h3>Challenge {{challenge.name}}</h3>
 
-        <h4> TOTAL DISTANCE: {{totalDistance | number}}/{{challenge.goal}} km</h4>
+        <app-count-down-timer [endDate]="challenge.end "></app-count-down-timer>
+
+        <h4 class="progress-text"> {{totalDistance | number}}/{{challenge.goal |number}} km</h4>
         <!-- progress bar -->
         <div class="progress-box">
             <div class="progress" style="height: 30px;">
@@ -70,7 +70,9 @@
                             <div class="col-6">{{activity.distance}} km</div>
                         </div>
                         <div *ngIf="activity.sportType === 'Run'" class="row">
-                            <div class="col-6"> <fa-icon [icon]="faRun" class="text-info"></fa-icon> </div>
+                            <div class="col-6"> <fa-icon [icon]="faRun" class="text-info"></fa-icon>
+                                <span class="weight">x3</span>
+                            </div>
                             <div class="col-6">{{activity.distance}} km</div>
                         </div>
                         <div *ngIf="activity.sportType === 'Snowboard'" class="row">
@@ -82,11 +84,17 @@
                             <div class="col-6">{{activity.distance}} km</div>
                         </div>
                         <div *ngIf="activity.sportType === 'Swim'" class="row">
-                            <div class="col-6"> <fa-icon [icon]="faSwim" class="text-warning"></fa-icon> </div>
+                            <div class="col-6">
+                                <fa-icon [icon]="faSwim" class="text-warning"></fa-icon>
+                                <span class="weight">x10</span>
+                            </div>
                             <div class="col-6">{{activity.distance}} km</div>
                         </div>
                         <div *ngIf="activity.sportType === 'Hike'" class="row">
-                            <div class="col-6"> <fa-icon [icon]="faHike" class="text-danger"></fa-icon> </div>
+                            <div class="col-6">
+                                <fa-icon [icon]="faHike" class="text-danger"></fa-icon>
+                                <span class="weight">x5</span>
+                            </div>
                             <div class="col-6">{{activity.distance}} km</div>
                         </div>
 

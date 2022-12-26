@@ -77,7 +77,7 @@ export class DashboardComponent {
   private getDashboard(): void {
     // load the dashboard
     console.log("load athlete data")
-    this.athleteService.getDashboardData('2022-12-01').subscribe({
+    this.athleteService.getDashboardData(this.challenge.start).subscribe({
       next: (res) => {
         this.athletesData = res.data;
 
@@ -132,13 +132,5 @@ export class DashboardComponent {
 
       }
     })
-
   }
-
-  private countdown(): void {
-
-
-
-  }
-
 }
