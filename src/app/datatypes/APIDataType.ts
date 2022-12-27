@@ -17,14 +17,17 @@ export declare interface Athlete {
         imgURL: string,
     },
     activities: Activity[],
-    totalDistance: number
+    totalDistance: number,
+    totalNewDistance: number,
+
 }
 
 
 export declare interface Activity {
     id: string,
     distance: number,
-    sportType: SportType
+    sportType: SportType,
+    newDistance: number
 }
 
 

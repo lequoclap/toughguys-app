@@ -95,6 +95,7 @@ export class DashboardComponent {
         this.athletesData.forEach((item) => {
           // init athlete total distance
           item.totalDistance = 0
+          item.totalNewDistance = 0
 
           //filter to remove unqualified SportType
           item.activities = item.activities.filter((activity) => {
@@ -112,6 +113,9 @@ export class DashboardComponent {
 
             // athletes total distance
             item.totalDistance += activity.distance;
+
+            // athletes total new distance
+            item.totalNewDistance += activity.newDistance;
 
             activity.distance = Math.round(activity.distance / 100) / 10;
           })
