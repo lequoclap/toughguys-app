@@ -14,9 +14,7 @@ import { GenerateTokenResponse, GetDashboardResponse } from '../datatypes/APIDat
  */
 export class AthleteService {
 
-  private accessToken = '';
   constructor(private http: HttpClient, private cookieService: CookieService) {
-    this.accessToken = 'Bearer ' + this.cookieService.get(config.cookie.athleteId) + '.' + this.cookieService.get(config.cookie.accessToken);
   }
 
   /**
@@ -30,7 +28,7 @@ export class AthleteService {
     const headers = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': this.accessToken,
+        'Authorization': this.getToken(),
       })
     };
     return this.http.post(url,
@@ -50,7 +48,7 @@ export class AthleteService {
     const headers = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': this.accessToken,
+        'Authorization': this.getToken(),
       })
     };
 
@@ -85,5 +83,9 @@ export class AthleteService {
         'code': code,
       },
       headers).pipe(map((res) => res))
+  }
+
+  private getToken() {
+    return 'Bearer ' + this.cookieService.get(config.cookie.athleteId) + '.' + this.cookieService.get(config.cookie.accessToken);
   }
 }

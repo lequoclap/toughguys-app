@@ -6,6 +6,8 @@ import { Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
 import { faCrown, faPersonBiking, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faSync, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { CookieService } from 'ngx-cookie-service';
+import { config } from 'src/app/config';
 
 @Component({
   selector: 'app-dashboard',
@@ -47,11 +49,15 @@ export class DashboardComponent {
   }
 
   constructor(
+    private cookieService: CookieService,
     private athleteService: AthleteService,
     private router: Router) {
   }
 
   ngOnInit(): void {
+    if (!this.cookieService.get(config.cookie.athleteId) || !this.cookieService.get(config.cookie.athleteId)) {
+      this.router.navigate(['/login']);
+    }
     this.getDashboard();
   }
 
