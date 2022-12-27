@@ -115,7 +115,7 @@ export class DashboardComponent {
             item.totalDistance += activity.distance;
 
             // athletes total new distance
-            item.totalNewDistance += activity.newDistance;
+            item.totalNewDistance += activity.newDistance * SPORT_WEIGHT_MAP.get(activity.sportType)!;
 
             activity.distance = Math.round(activity.distance / 100) / 10;
           })
