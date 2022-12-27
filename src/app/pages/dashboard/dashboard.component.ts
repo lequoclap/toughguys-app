@@ -67,9 +67,10 @@ export class DashboardComponent {
       // sync data
       next: (res) => {
         this.errorMessage = res.message;
-        console.log(res)
         // getDashboard again
-        if (res.statusCode == 200) {
+        console.log(res)
+        console.log(res.status)
+        if (res.status == "success") {
           this.getDashboard();
         }
 
