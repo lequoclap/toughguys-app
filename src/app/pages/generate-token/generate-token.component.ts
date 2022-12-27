@@ -38,6 +38,10 @@ export class GenerateTokenComponent {
         this.cookieService.set(config.cookie.athleteId, res.data.athleteId, expiresAt)
         this.cookieService.set(config.cookie.accessToken, res.data.token, expiresAt)
 
+        // delayed 2s to make sure cookies are set
+        setTimeout(() => {
+          console.log("Delayed for 2 seconds.");
+        }, 2000)
         // redirect back to dashboard
         this.router.navigate(['/']);
       },
