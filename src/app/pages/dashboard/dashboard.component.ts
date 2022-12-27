@@ -83,6 +83,8 @@ export class DashboardComponent {
   }
 
   private getDashboard(): void {
+    // clear map
+    this.progressMap.clear();
     // load the dashboard
     console.log("load athlete data")
     this.athleteService.getDashboardData(this.challenge.start).subscribe({
