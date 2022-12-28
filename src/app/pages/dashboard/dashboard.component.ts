@@ -20,7 +20,7 @@ export class DashboardComponent {
   public errorMessage = '';
   public totalDistance = 0;
   public countdownText = '';
-
+  public isSyncing = false;
   public challenge = {
     goal: 1000,
     name: 'Chao xuan 2023',
@@ -62,6 +62,7 @@ export class DashboardComponent {
   }
 
   onSync(): void {
+    this.isSyncing = true;
     //sync
     this.athleteService.syncAthleteData().subscribe({
       // sync data
@@ -78,7 +79,10 @@ export class DashboardComponent {
       error: (error) => {
         console.error(error)
         this.errorMessage = 'Can not sync data! ' + error;
-      }
+      },
+    }).add(() => {
+      //finally
+      this.isSyncing = false;
     })
   }
 
