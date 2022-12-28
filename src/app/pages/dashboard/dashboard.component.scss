@@ -46,17 +46,19 @@ hr {
     padding-right: 10px;
 }
 
-.ath-total-distance {
-    color: orange;
-    font-weight: bold;
-}
 
-.ath-total-box {
+
+.ath-total-distance-box {
     text-align: end;
     padding-right: 10px;
-}
 
-.ath-total-new-distance {
-    color: yellow;
-    font-size: small;
+    .distance {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .new-distance {
+        color: greenyellow;
+        font-size: 12px;
+    }
 }
