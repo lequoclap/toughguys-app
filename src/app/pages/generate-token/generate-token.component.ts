@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as dayjs from 'dayjs';
 import { CookieService } from 'ngx-cookie-service';
 import { config } from 'src/app/config';
 import { AthleteService } from 'src/app/services/athlete.service';
@@ -33,7 +34,7 @@ export class GenerateTokenComponent {
     this.athleteService.generateToken(this.code).subscribe({
       next: (res) => {
         // set expiration date = now() + 7 days
-        const expiresAt = Date.parse(new Date().toLocaleDateString()) + 7 * 24 * 3600 * 1000;
+        const expiresAt = dayjs().add(7, 'day').toDate();
         // store auth info in cookie
         this.cookieService.set(config.cookie.athleteId, res.data.athleteId, expiresAt)
         this.cookieService.set(config.cookie.accessToken, res.data.token, expiresAt)
