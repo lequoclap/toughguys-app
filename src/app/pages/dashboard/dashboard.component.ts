@@ -24,8 +24,8 @@ export class DashboardComponent {
   public challenge = {
     goal: 1000,
     name: 'Chao xuan 2023',
-    start: '2022-12-01',
-    end: '2023-02-01'
+    start: '2022-12-01 00:00:00',
+    end: '2023-02-01 00:00:00'
   }
 
   faRide = faPersonBiking;
@@ -91,7 +91,7 @@ export class DashboardComponent {
     this.progressMap.clear();
     // load the dashboard
     console.log("load athlete data")
-    this.athleteService.getDashboardData(this.challenge.start).subscribe({
+    this.athleteService.getDashboardData(this.challenge.start, this.challenge.end).subscribe({
       next: (res) => {
         this.athletesData = res.data;
 

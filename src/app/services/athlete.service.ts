@@ -41,7 +41,7 @@ export class AthleteService {
    * @param from 
    * @returns 
    */
-  getDashboardData(from: string): Observable<GetDashboardResponse> {
+  getDashboardData(from: string, to: string): Observable<GetDashboardResponse> {
     // url to get dashboard data
     const url = config.toughGuysApi.host + config.toughGuysApi.dashboard;
     // Using the POST method
@@ -55,7 +55,8 @@ export class AthleteService {
 
     return this.http.post(url,
       {
-        'from': from
+        'from': from,
+        'to': to
       },
       headers) as Observable<GetDashboardResponse>
   }
