@@ -48,6 +48,8 @@ export class DashboardComponent {
     alpineSki: 0,
   }
 
+  public isAdmin = false;
+
   constructor(
     private cookieService: CookieService,
     private athleteService: AthleteService,
@@ -55,6 +57,8 @@ export class DashboardComponent {
   }
 
   ngOnInit(): void {
+    this.isAdmin = this.cookieService.get(config.cookie.athleteId) == config.adminId;
+
     if (!this.cookieService.get(config.cookie.athleteId) || !this.cookieService.get(config.cookie.athleteId)) {
       this.router.navigate(['/login']);
     }
