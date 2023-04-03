@@ -23,9 +23,9 @@ export class DashboardComponent {
   public isSyncing = false;
   public challenge = {
     goal: 1000,
-    name: 'Chao xuan 2023',
-    start: '2022-12-01 00:00:00',
-    end: '2023-02-01 00:00:00'
+    name: 'Early Summer 2023',
+    start: '2023-04-01 00:00:00',
+    end: '2023-06-01 00:00:00'
   }
 
   faRide = faPersonBiking;
@@ -85,6 +85,34 @@ export class DashboardComponent {
       this.isSyncing = false;
     })
   }
+
+  // this feature is only for admin
+  onHardSync(): void {
+
+    this.isSyncing = true;
+    //hard sync
+    this.athleteService.syncAthleteData(true).subscribe({
+      // sync data
+      next: (res) => {
+        this.errorMessage = res.message;
+        // getDashboard again
+        console.log(res)
+        console.log(res.status)
+        if (res.status == "success") {
+          this.getDashboard();
+        }
+
+      },
+      error: (error) => {
+        console.error(error)
+        this.errorMessage = 'Can not hard sync data! ' + error;
+      },
+    }).add(() => {
+      //finally
+      this.isSyncing = false;
+    })
+  }
+
 
   private getDashboard(): void {
     // clear map

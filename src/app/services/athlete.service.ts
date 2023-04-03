@@ -22,7 +22,7 @@ export class AthleteService {
    * @returns 
    */
 
-  syncAthleteData(): Observable<any> {
+  syncAthleteData(isHardSync = false): Observable<any> {
     // url to sync data
     const url = config.toughGuysApi.host + config.toughGuysApi.syncData;
     const headers = {
@@ -32,7 +32,7 @@ export class AthleteService {
       })
     };
     return this.http.post(url,
-      {},
+      { 'isHardSync': isHardSync },
       headers)
   }
 

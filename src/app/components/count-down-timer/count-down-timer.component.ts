@@ -61,6 +61,7 @@ export class CountDownTimerComponent {
   }
 
   tickTock() {
+    console.log(this.isOver)
     if (!this.isOver) {
       this.date = new Date();
       this.now = this.date.getTime();

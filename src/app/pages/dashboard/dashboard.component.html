@@ -114,7 +114,7 @@
 
     <div class="text-center">
         <p class="error-message"> {{ errorMessage }} </p>
-        <button class="btn btn-sync" (click)="onSync()">
+        <button class="btn btn-sync" (click)="onSync()" (mousedown)="onHardSync()">
             <span [class.fa-spin]="isSyncing"><fa-icon [icon]="faSync" class="fa-spin"></fa-icon></span>
             &nbsp;
             <span>Sync data</span>
