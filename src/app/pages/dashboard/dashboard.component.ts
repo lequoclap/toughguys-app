@@ -22,7 +22,7 @@ export class DashboardComponent {
   public countdownText = '';
   public isSyncing = false;
   public challenge = {
-    goal: 1000,
+    goal: 1200,
     name: 'Early Summer 2023',
     start: '2023-04-01 00:00:00',
     end: '2023-06-01 00:00:00'
