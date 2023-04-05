@@ -1,4 +1,4 @@
-name: Deploy Toughgys App
+name: Deploy Toughguys App
 
 on:
   push:
@@ -45,4 +45,4 @@ jobs:
         run: aws s3 rm s3://toughguys-app --recursive
 
       - name: replace app with new files
-        run: aws s3 cp dist/ s3://toughguys-app --recursive
+        run: aws s3 cp dist/toughguys-api/ s3://toughguys-app --recursive
