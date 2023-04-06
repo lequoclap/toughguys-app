@@ -123,9 +123,9 @@
 
     <div class="text-center" *ngIf="isAdmin">
         <button class="btn btn-hard-sync" (click)="onHardSync()">
-            <span [class.fa-spin]="isSyncing"><fa-icon [icon]="faSync" class="fa-spin"></fa-icon></span>
+            <span [class.fa-spin]="isHardSyncing"><fa-icon [icon]="faSync" class="fa-spin"></fa-icon></span>
             &nbsp;
-            <span>Hard sync data</span>
+            <span>Hard sync</span>
         </button>
     </div>
 </div>

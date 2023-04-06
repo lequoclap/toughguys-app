@@ -21,6 +21,7 @@ export class DashboardComponent {
   public totalDistance = 0;
   public countdownText = '';
   public isSyncing = false;
+  public isHardSyncing = false;
   public challenge = {
     goal: 1200,
     name: 'Early Summer 2023',
@@ -93,7 +94,7 @@ export class DashboardComponent {
   // this feature is only for admin
   onHardSync(): void {
 
-    this.isSyncing = true;
+    this.isHardSyncing = true;
     //hard sync
     this.athleteService.syncAthleteData(true).subscribe({
       // sync data
@@ -113,7 +114,7 @@ export class DashboardComponent {
       },
     }).add(() => {
       //finally
-      this.isSyncing = false;
+      this.isHardSyncing = false;
     })
   }
 
