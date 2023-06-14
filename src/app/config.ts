@@ -1,4 +1,4 @@
-import { env } from "env";
+import { env, challenges } from "env";
 
 export const config = {
     toughGuysApi: {
@@ -13,5 +13,6 @@ export const config = {
     cookie: {
         athleteId: 'athlete-id',
         accessToken: 'access-token'
-    }
+    },
+    challenges: challenges
 }

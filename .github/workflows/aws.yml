@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   deploy:
-    name: Deploy Serverless API
+    name: Deploy Toughguys App
     runs-on: ubuntu-latest
     environment: production
 

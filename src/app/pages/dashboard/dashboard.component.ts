@@ -24,9 +24,9 @@ export class DashboardComponent {
   public isHardSyncing = false;
   public challenge = {
     goal: 2000,
-    name: 'Early Summer 2023',
-    start: '2023-04-01 00:00:00',
-    end: '2023-06-01 00:00:00'
+    name: 'Hot Summer 2023',
+    start: '2023-06-01 00:00:00',
+    end: '2023-08-01 00:00:00'
   }
 
   faRide = faPersonBiking;
