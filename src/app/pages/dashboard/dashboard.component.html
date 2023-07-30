@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="text-center">
+<div class="container theme-hot-summer">
+    <div class=" text-center">
         <h1 class="title">DASHBOARD</h1>
 
         <h3>Challenge: {{challenge.name}}</h3>
@@ -114,6 +114,13 @@
             <hr>
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="col-6 text-start" (click)="onClickPreviousChallenge()"> ← </div>
+        <div class="col-6 text-end" (click)="onClickNextChallenge()"> →</div>
+    </div>
+
 
     <div class="text-center">
         <p class="error-message"> {{ errorMessage }} </p>

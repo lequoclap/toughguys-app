@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SPORT_WEIGHT_MAP } from 'src/app/const';
 import { Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
@@ -8,6 +8,7 @@ import { AthleteService } from 'src/app/services/athlete.service';
 import { faCrown, faPersonBiking, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faSync, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
 import { config } from 'src/app/config';
+import { CHALLENGES } from 'src/app/challenges';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,12 +23,10 @@ export class DashboardComponent {
   public countdownText = '';
   public isSyncing = false;
   public isHardSyncing = false;
-  public challenge = {
-    goal: 3500,
-    name: 'Hot Summer 2023',
-    start: '2023-06-01 00:00:00',
-    end: '2023-08-01 00:00:00'
-  }
+  public challenges = CHALLENGES;
+
+  public challenge: any = {};
+  currentChallengeId = 0;
 
   faRide = faPersonBiking;
   faHike = faPersonHiking;
@@ -54,7 +53,8 @@ export class DashboardComponent {
   constructor(
     private cookieService: CookieService,
     private athleteService: AthleteService,
-    private router: Router) {
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -63,6 +63,13 @@ export class DashboardComponent {
     if (!this.cookieService.get(config.cookie.athleteId) || !this.cookieService.get(config.cookie.athleteId)) {
       this.router.navigate(['/login']);
     }
+
+    this.route.queryParams.subscribe(params => {
+      this.currentChallengeId = params['id']
+      // if there is a non-existing id then it will be assign to the latest challenge
+      this.challenge = this.challenges.find(c => c.id == this.currentChallengeId) || this.challenges[0] as any
+      this.currentChallengeId = this.challenge.id; // assign back the verified id 
+    })
     this.getDashboard();
   }
 
@@ -117,6 +124,22 @@ export class DashboardComponent {
       this.isHardSyncing = false;
     })
   }
+
+  onClickPreviousChallenge(): void {
+    if (this, this.currentChallengeId > 1) {
+      this.router.navigate([], { queryParams: { id: this.currentChallengeId - 1 } }).then(() => {
+        window.location.reload();
+      })
+    }
+  }
+  onClickNextChallenge(): void {
+    if (this.currentChallengeId < this.challenges.length) {
+      this.router.navigate([], { queryParams: { id: this.currentChallengeId + 1 } }).then(() => {
+        window.location.reload();
+      });
+    }
+  }
+
 
 
   private getDashboard(): void {
@@ -184,4 +207,5 @@ export class DashboardComponent {
       }
     })
   }
+
 }
