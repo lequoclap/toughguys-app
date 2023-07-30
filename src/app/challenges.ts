@@ -14,7 +14,7 @@ export const CHALLENGES = [
         name: 'Early Summer 2023',
         start: '2023-04-01 00:00:00',
         end: '2023-06-01 00:00:00',
-        icon: 'hot-summer-icon.png',
+        icon: 'summer-icon.png',
         theme: 'theme-early-summer-2023'
     },
 
