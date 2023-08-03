@@ -1,5 +1,14 @@
 export const CHALLENGES = [
     {
+        id: 5,
+        goal: 3000,
+        name: 'Bye Summer 2023',
+        start: '2023-08-01 00:00:00',
+        end: '2023-10-01 00:00:00',
+        //icon: 'hot-summer-icon.png',
+        //theme: 'theme-hot-summer-2023'
+    },
+    {
         id: 4,
         goal: 3500,
         name: 'Hot Summer 2023',
@@ -8,6 +17,7 @@ export const CHALLENGES = [
         icon: 'hot-summer-icon.png',
         theme: 'theme-hot-summer-2023'
     },
+  
     {
         id: 3,
         goal: 2000,
