@@ -6,7 +6,7 @@ export const CHALLENGES = [
         start: '2023-08-01 00:00:00',
         end: '2023-10-01 00:00:00',
         icon: 'typhoon-icon.png',
-        theme: 'typhoon-season-2023'
+        theme: 'theme-typhoon-season-2023'
     },
     {
         id: 4,
