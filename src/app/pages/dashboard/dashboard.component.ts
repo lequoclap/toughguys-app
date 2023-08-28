@@ -5,7 +5,7 @@ import { SPORT_WEIGHT_MAP } from 'src/app/const';
 import { Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
-import { faCrown, faPersonBiking, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faSync, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { faCrown, faPersonBiking, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faSync, faTrophy, faPoop } from '@fortawesome/free-solid-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
 import { config } from 'src/app/config';
 import { CHALLENGES } from 'src/app/challenges';
@@ -37,6 +37,7 @@ export class DashboardComponent {
   faCrown = faCrown;
   faTrophy = faTrophy;
   faSync = faSync;
+  faPoop = faPoop;
 
   public progressMap = new Map();
   public progress = {

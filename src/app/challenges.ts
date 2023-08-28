@@ -17,7 +17,6 @@ export const CHALLENGES = [
         icon: 'hot-summer-icon.png',
         theme: 'theme-hot-summer-2023'
     },
-  
     {
         id: 3,
         goal: 2000,

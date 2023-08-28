@@ -55,6 +55,7 @@
                     <fa-icon *ngIf="i === 0" [icon]="faCrown" class="icon-gold "></fa-icon>
                     <fa-icon *ngIf="i === 1" [icon]="faTrophy" class="icon-silver"></fa-icon>
                     <fa-icon *ngIf="i === 2" [icon]="faTrophy" class="icon-bronze"></fa-icon>
+                    <fa-icon *ngIf="i === athletesData.length -1" [icon]="faPoop" class="icon-poop"></fa-icon>
                 </div>
                 <div class="col-2">
                     <img [src]="athlete.athlete.imgURL" width="60px" />
