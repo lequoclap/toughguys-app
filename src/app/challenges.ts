@@ -1,12 +1,12 @@
 export const CHALLENGES = [
-      {
+    {
         id: 6,
         goal: 3500,
-        name: 'Momiji Season 2023',
+        name: 'Autumn 2023',
         start: '2023-10-01 00:00:00',
         end: '2023-12-01 00:00:00',
-        icon: '',
-        theme: ''
+        icon: 'autumn-icon.png',
+        theme: 'theme-autumn-2023'
     },
     {
         id: 5,
