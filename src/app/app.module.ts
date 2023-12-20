@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CountDownTimerComponent } from './components/count-down-timer/count-down-timer.component';
+import { RecapComponent } from './pages/recap/recap.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CountDownTimerComponent } from './components/count-down-timer/count-dow
     FooterComponent,
     SpinnerComponent,
     GenerateTokenComponent,
-    CountDownTimerComponent
+    CountDownTimerComponent,
+    RecapComponent
   ],
   imports: [
     BrowserModule,

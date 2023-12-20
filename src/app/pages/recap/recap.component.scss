@@ -1,0 +1,90 @@
+hr {
+    border: 1px solid white;
+    margin: 10px;
+}
+
+.btn-sync {
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: orange;
+    opacity: 90%;
+    margin-bottom: 20px;
+}
+
+.btn-hard-sync {
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: rgb(177, 172, 164);
+    opacity: 90%;
+    margin-bottom: 20px;
+}
+
+.progress-box {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.progress-text {
+    color: #d9a74a;
+    font-weight: 800;
+    font-size: x-large;
+}
+
+.icon-gold {
+    color: gold;
+}
+
+.icon-silver {
+    color: silver;
+}
+
+.icon-bronze {
+    color: #CD7F32;
+}
+
+.icon-poop {
+    color: #e37dea;
+}
+
+.my-icon {
+    filter: drop-shadow(0 0 0.1rem white);
+}
+
+.weight {
+    margin-left: 3px;
+    font-size: 10px
+}
+
+.detail-distance {
+    text-align: end;
+    padding-right: 10px;
+}
+
+.athlete-name {
+    padding-left: 5px;
+}
+
+.ath-total-distance-box {
+    text-align: end;
+    padding-right: 10px;
+
+    .distance {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .new-distance {
+        color: greenyellow;
+        font-size: 12px;
+    }
+}
+
+span {
+    display: inline-block;
+}
