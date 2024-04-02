@@ -1,5 +1,14 @@
 export const CHALLENGES = [
     {
+        id: 9,
+        goal: 1200,
+        name: 'April 2024',
+        start: '2024-04-01 00:00:00',
+        end: '2024-05-01 00:00:00',
+        icon: 'sakura-icon.png',
+        theme: 'theme-sakura-2023'
+    },
+    {
         id: 8,
         goal: 3000,
         name: 'Spring 2024',
