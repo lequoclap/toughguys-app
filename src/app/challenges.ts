@@ -1,5 +1,13 @@
 export const CHALLENGES = [
-    {
+     {
+        id: 10,
+        goal: 1200,
+        name: 'May 2024',
+        start: '2024-05-01 00:00:00',
+        end: '2024-06-01 00:00:00',
+        icon: 'summer-icon.png',
+        theme: 'theme-early-summer-2023'
+    },  {
         id: 9,
         goal: 1200,
         name: 'April 2024',
