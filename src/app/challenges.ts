@@ -4,7 +4,7 @@ export const CHALLENGES = [
         goal: 1500,
         name: 'July 2024',
         start: '2024-07-01 00:00:00',
-        end: '2024-07-01 00:00:00',
+        end: '2024-08-01 00:00:00',
         icon: 'summer-icon.png',
         theme: 'theme-early-summer-2023'
     },
