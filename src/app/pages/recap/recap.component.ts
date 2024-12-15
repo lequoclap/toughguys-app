@@ -63,9 +63,8 @@ export class RecapComponent {
     if (!this.cookieService.get(config.cookie.athleteId) || !this.cookieService.get(config.cookie.athleteId)) {
       this.router.navigate(['/login']);
     }
-    console.log("asdasd")
     this.route.queryParams.subscribe(params => {
-      this.currentYear = params['year'] || new Date().getFullYear();
+      this.currentYear = parseInt(params['year'] || new Date().getFullYear());
       this.challenge = {
         start: this.currentYear + '-01-01 00:00:00',
         end: this.currentYear + '-12-31 23:59:59',
