@@ -25,7 +25,7 @@ export class RecapComponent {
   public isHardSyncing = false;
 
   public challenge: any = {};
-  currentYear = 2023;
+  currentYear = 2024;
 
   faRide = faPersonBiking;
   faHike = faPersonHiking;
