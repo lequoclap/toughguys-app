@@ -39,15 +39,8 @@ export class RecapComponent {
   faPoop = faPoop;
 
   public progressMap = new Map();
-  public progress = {
-    ride: 0,
-    snowboard: 0,
-    hike: 0,
-    run: 0,
-    swim: 0,
-    alpineSki: 0,
-  }
-
+  public sortedSports: Array<{sportType: string, distance: number}> = [];
+  
   public isAdmin = false;
 
   constructor(
@@ -116,6 +109,7 @@ export class RecapComponent {
   private getRecap(): void {
     // clear map
     this.progressMap.clear();
+    this.sortedSports = [];
     this.totalSports = 0;
     // load the recap
     console.log("load athlete data 1")
@@ -142,8 +136,6 @@ export class RecapComponent {
           this.totalSports = this.athleteData.activities.length;
           
           this.athleteData.activities.forEach((activity) => {
-            // use original distance, no weight
-            // accumulate to map
             this.progressMap.set(activity.sportType, (this.progressMap.get(activity.sportType) || 0) + activity.distance);
 
             // count total distance
@@ -160,8 +152,14 @@ export class RecapComponent {
 
           this.totalDistance = Math.floor(this.totalDistance / 1000);
           
-          // Sort sports by distance (high to low)
-          this.progressMap = new Map([...this.progressMap.entries()].sort((a, b) => b[1] - a[1]));
+          // Sort sports by distance (high to low) and create array
+          this.sortedSports = [...this.progressMap.entries()]
+            .sort((a, b) => b[1] - a[1])
+            .map((entry, index) => ({
+              sportType: entry[0],
+              distance: entry[1],
+              rank: index + 1
+            }));
         }
 
       },
