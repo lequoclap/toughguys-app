@@ -18,46 +18,18 @@
     <div class="top-sports">
       <h3 class="section-title">TOP SPORTS</h3>
       <div class="sports-list">
-        <div *ngIf="progressMap.get('Run')" class="sport-item">
-          <div class="sport-icon run-icon"><fa-icon [icon]="faRun"></fa-icon></div>
-          <div class="sport-content">
-            <p class="sport-rank">Run</p>
-            <p class="sport-distance">{{progressMap.get('Run')/1000 | number:'1.0-1'}} km</p>
+        <div *ngFor="let sport of sortedSports" class="sport-item" [ngSwitch]="sport.sportType">
+          <div class="sport-icon" [ngClass]="sport.sportType.toLowerCase() + '-icon'">
+            <fa-icon *ngSwitchCase="'Run'" [icon]="faRun"></fa-icon>
+            <fa-icon *ngSwitchCase="'Ride'" [icon]="faRide"></fa-icon>
+            <fa-icon *ngSwitchCase="'Hike'" [icon]="faHike"></fa-icon>
+            <fa-icon *ngSwitchCase="'Swim'" [icon]="faSwim"></fa-icon>
+            <fa-icon *ngSwitchCase="'Snowboard'" [icon]="faSnowboard"></fa-icon>
+            <fa-icon *ngSwitchCase="'AlpineSki'" [icon]="faAlpineSki"></fa-icon>
           </div>
-        </div>
-        <div *ngIf="progressMap.get('Ride')" class="sport-item">
-          <div class="sport-icon ride-icon"><fa-icon [icon]="faRide"></fa-icon></div>
           <div class="sport-content">
-            <p class="sport-rank">Ride</p>
-            <p class="sport-distance">{{progressMap.get('Ride')/1000 | number:'1.0-1'}} km</p>
-          </div>
-        </div>
-        <div *ngIf="progressMap.get('Hike')" class="sport-item">
-          <div class="sport-icon hike-icon"><fa-icon [icon]="faHike"></fa-icon></div>
-          <div class="sport-content">
-            <p class="sport-rank">Hike</p>
-            <p class="sport-distance">{{progressMap.get('Hike')/1000 | number:'1.0-1'}} km</p>
-          </div>
-        </div>
-        <div *ngIf="progressMap.get('Swim')" class="sport-item">
-          <div class="sport-icon swim-icon"><fa-icon [icon]="faSwim"></fa-icon></div>
-          <div class="sport-content">
-            <p class="sport-rank">Swim</p>
-            <p class="sport-distance">{{progressMap.get('Swim')/1000 | number:'1.0-1'}} km</p>
-          </div>
-        </div>
-        <div *ngIf="progressMap.get('Snowboard')" class="sport-item">
-          <div class="sport-icon snowboard-icon"><fa-icon [icon]="faSnowboard"></fa-icon></div>
-          <div class="sport-content">
-            <p class="sport-rank">Snowboard</p>
-            <p class="sport-distance">{{progressMap.get('Snowboard')/1000 | number:'1.0-1'}} km</p>
-          </div>
-        </div>
-        <div *ngIf="progressMap.get('AlpineSki')" class="sport-item">
-          <div class="sport-icon alpineski-icon"><fa-icon [icon]="faAlpineSki"></fa-icon></div>
-          <div class="sport-content">
-            <p class="sport-rank">Alpine Ski</p>
-            <p class="sport-distance">{{progressMap.get('AlpineSki')/1000 | number:'1.0-1'}} km</p>
+            <p class="sport-rank">#{{sport.rank}} {{sport.sportType}}</p>
+            <p class="sport-distance">{{sport.distance/1000 | number:'1.0-1'}} km</p>
           </div>
         </div>
       </div>
