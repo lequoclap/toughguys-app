@@ -19,7 +19,7 @@ export class RecapComponent {
   public athleteData: Athlete | null = null;
   public errorMessage = '';
   public totalDistance = 0;
-  public totalActivities = 0;
+  public totalSports = 0;
   public countdownText = '';
   public isSyncing = false;
   public isHardSyncing = false;
@@ -116,7 +116,7 @@ export class RecapComponent {
   private getRecap(): void {
     // clear map
     this.progressMap.clear();
-    this.totalActivities = 0;
+    this.totalSports = 0;
     // load the recap
     console.log("load athlete data 1")
     const loggedInAthleteId = this.cookieService.get(config.cookie.athleteId);
@@ -139,7 +139,7 @@ export class RecapComponent {
           })
           
           // count total activities
-          this.totalActivities = this.athleteData.activities.length;
+          this.totalSports = this.athleteData.activities.length;
           
           this.athleteData.activities.forEach((activity) => {
             // use original distance, no weight
@@ -159,6 +159,9 @@ export class RecapComponent {
           })
 
           this.totalDistance = Math.floor(this.totalDistance / 1000);
+          
+          // Sort sports by distance (high to low)
+          this.progressMap = new Map([...this.progressMap.entries()].sort((a, b) => b[1] - a[1]));
         }
 
       },

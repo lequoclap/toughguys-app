@@ -50,3 +50,16 @@ h3 {
         margin: 0 0 10px;
         text-align: center;
 }
+
+// Hide header on recap page
+.theme-year-in-sport ~ app-header {
+  display: none !important;
+}
+
+app-recap + app-header {
+  display: none !important;
+}
+
+app-recap app-header {
+  display: none !important;
+}

@@ -12,8 +12,9 @@
       <p class="new-distance" *ngIf="athleteData.totalNewDistance > 0">
         +{{athleteData.totalNewDistance/1000 | number:'1.0-1'}} km new
       </p>
-      <p class="total-activities">{{totalActivities}} Activities</p>
+      <p class="total-activities">{{totalSports}} Activities</p>
     </div>
+
     <div class="top-sports">
       <h3 class="section-title">TOP SPORTS</h3>
       <div class="sports-list">
@@ -65,5 +66,23 @@
 
   <div *ngIf="!athleteData" class="text-center empty-state">
     <p>No data available</p>
+  </div>
+
+  <div class="actions-footer">
+    <div class="row">
+      <div class="col-6 text-start" (click)="onClickPreviousChallenge()">
+        <span class="nav-arrow">←</span>
+      </div>
+      <div class="col-6 text-end" (click)="onClickNextChallenge()">
+        <span class="nav-arrow">→</span>
+      </div>
+    </div>
+    <div class="text-center sync-section">
+      <p class="error-message">{{ errorMessage }}</p>
+      <button class="btn btn-sync" (click)="onSync()">
+        <span [class.fa-spin]="isSyncing"><fa-icon [icon]="faSync"></fa-icon></span>
+        &nbsp;<span>Sync</span>
+      </button>
+    </div>
   </div>
 </div>
