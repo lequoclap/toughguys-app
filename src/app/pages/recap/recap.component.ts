@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SPORT_WEIGHT_MAP } from 'src/app/const';
 import { Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
@@ -20,6 +19,7 @@ export class RecapComponent {
   public athleteData: Athlete | null = null;
   public errorMessage = '';
   public totalDistance = 0;
+  public totalActivities = 0;
   public countdownText = '';
   public isSyncing = false;
   public isHardSyncing = false;
@@ -116,6 +116,7 @@ export class RecapComponent {
   private getRecap(): void {
     // clear map
     this.progressMap.clear();
+    this.totalActivities = 0;
     // load the recap
     console.log("load athlete data 1")
     const loggedInAthleteId = this.cookieService.get(config.cookie.athleteId);
@@ -136,12 +137,14 @@ export class RecapComponent {
           this.athleteData.activities = this.athleteData.activities.filter((activity) => {
             return (Object.values(SportType).includes(activity.sportType))
           })
+          
+          // count total activities
+          this.totalActivities = this.athleteData.activities.length;
+          
           this.athleteData.activities.forEach((activity) => {
-            // add weight
-            activity.distance = activity.distance as number * SPORT_WEIGHT_MAP.get(activity.sportType)!;
-
+            // use original distance, no weight
             // accumulate to map
-            this.progressMap.set(activity.sportType, (this.progressMap.get(activity.sportType) || 0) + activity.distance)
+            this.progressMap.set(activity.sportType, (this.progressMap.get(activity.sportType) || 0) + activity.distance);
 
             // count total distance
             this.totalDistance += activity.distance;
@@ -150,7 +153,7 @@ export class RecapComponent {
             this.athleteData!.totalDistance += activity.distance;
 
             // athlete total new distance
-            this.athleteData!.totalNewDistance += activity.newDistance * SPORT_WEIGHT_MAP.get(activity.sportType)!;
+            this.athleteData!.totalNewDistance += activity.newDistance;
 
             activity.distance = Math.round(activity.distance / 100) / 10;
           })
