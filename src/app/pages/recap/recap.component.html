@@ -1,118 +1,69 @@
-<div class="container theme-year-in-sport">
-    <div class="recap-header text-center">
-        <h1 class="title">YOUR YEAR IN SPORT</h1>
-        <p class="subtitle">{{currentYear}}</p>
+<div class="theme-year-in-sport">
+  <div class="recap-header text-center">
+    <h1 class="title">YOUR YEAR IN SPORT</h1>
+    <p class="subtitle">{{currentYear}}</p>
+  </div>
+
+  <div *ngIf="athleteData" class="athlete-card">
+    <div class="athlete-info text-center">
+      <img [src]="athleteData.athlete.imgURL" class="athlete-avatar" />
+      <h2 class="athlete-name">{{athleteData.athlete.name}}</h2>
+      <p class="total-distance">{{athleteData.totalDistance/1000 | number:'1.0-1'}} km</p>
+      <p class="new-distance" *ngIf="athleteData.totalNewDistance > 0">
+        +{{athleteData.totalNewDistance/1000 | number:'1.0-1'}} km new
+      </p>
+      <p class="total-activities">{{totalActivities}} Activities</p>
     </div>
-
-    <div *ngIf="athleteData" class="athlete-card">
-        <!-- Athlete Info -->
-        <div class="athlete-info text-center">
-            <img [src]="athleteData.athlete.imgURL" class="athlete-avatar" />
-            <h2 class="athlete-name">{{athleteData.athlete.name}}</h2>
-            <p class="total-distance">{{athleteData.totalDistance/1000 | number:'1.0-1'}} km</p>
-            <p class="new-distance" *ngIf="athleteData.totalNewDistance > 0">
-                +{{athleteData.totalNewDistance/1000 | number:'1.0-1'}} km new
-            </p>
+    <div class="top-sports">
+      <h3 class="section-title">TOP SPORTS</h3>
+      <div class="sports-list">
+        <div *ngIf="progressMap.get('Run')" class="sport-item">
+          <div class="sport-icon run-icon"><fa-icon [icon]="faRun"></fa-icon></div>
+          <div class="sport-content">
+            <p class="sport-rank">Run</p>
+            <p class="sport-distance">{{progressMap.get('Run')/1000 | number:'1.0-1'}} km</p>
+          </div>
         </div>
-
-        <!-- Top Sports Section -->
-        <div class="top-sports">
-            <h3 class="section-title">TOP SPORTS</h3>
-            
-            <div class="sports-list">
-                <!-- Run -->
-                <div *ngIf="progressMap.get('Run')" class="sport-item">
-                    <div class="sport-icon run-icon">
-                        <fa-icon [icon]="faRun"></fa-icon>
-                    </div>
-                    <div class="sport-content">
-                        <p class="sport-rank">#1 Run</p>
-                        <p class="sport-distance">{{progressMap.get('Run')/1000 | number:'1.0-1'}} km</p>
-                    </div>
-                </div>
-
-                <!-- Ride -->
-                <div *ngIf="progressMap.get('Ride')" class="sport-item">
-                    <div class="sport-icon ride-icon">
-                        <fa-icon [icon]="faRide"></fa-icon>
-                    </div>
-                    <div class="sport-content">
-                        <p class="sport-rank">#2 Ride</p>
-                        <p class="sport-distance">{{progressMap.get('Ride')/1000 | number:'1.0-1'}} km</p>
-                    </div>
-                </div>
-
-                <!-- Hike -->
-                <div *ngIf="progressMap.get('Hike')" class="sport-item">
-                    <div class="sport-icon hike-icon">
-                        <fa-icon [icon]="faHike"></fa-icon>
-                    </div>
-                    <div class="sport-content">
-                        <p class="sport-rank">#3 Hike</p>
-                        <p class="sport-distance">{{progressMap.get('Hike')/1000 | number:'1.0-1'}} km</p>
-                    </div>
-                </div>
-
-                <!-- Swim -->
-                <div *ngIf="progressMap.get('Swim')" class="sport-item">
-                    <div class="sport-icon swim-icon">
-                        <fa-icon [icon]="faSwim"></fa-icon>
-                    </div>
-                    <div class="sport-content">
-                        <p class="sport-rank">#4 Swim</p>
-                        <p class="sport-distance">{{progressMap.get('Swim')/1000 | number:'1.0-1'}} km</p>
-                    </div>
-                </div>
-
-                <!-- Snowboard -->
-                <div *ngIf="progressMap.get('Snowboard')" class="sport-item">
-                    <div class="sport-icon snowboard-icon">
-                        <fa-icon [icon]="faSnowboard"></fa-icon>
-                    </div>
-                    <div class="sport-content">
-                        <p class="sport-rank">#5 Snowboard</p>
-                        <p class="sport-distance">{{progressMap.get('Snowboard')/1000 | number:'1.0-1'}} km</p>
-                    </div>
-                </div>
-
-                <!-- AlpineSki -->
-                <div *ngIf="progressMap.get('AlpineSki')" class="sport-item">
-                    <div class="sport-icon alpineski-icon">
-                        <fa-icon [icon]="faAlpineSki"></fa-icon>
-                    </div>
-                    <div class="sport-content">
-                        <p class="sport-rank">#6 Alpine Ski</p>
-                        <p class="sport-distance">{{progressMap.get('AlpineSki')/1000 | number:'1.0-1'}} km</p>
-                    </div>
-                </div>
-            </div>
+        <div *ngIf="progressMap.get('Ride')" class="sport-item">
+          <div class="sport-icon ride-icon"><fa-icon [icon]="faRide"></fa-icon></div>
+          <div class="sport-content">
+            <p class="sport-rank">Ride</p>
+            <p class="sport-distance">{{progressMap.get('Ride')/1000 | number:'1.0-1'}} km</p>
+          </div>
         </div>
+        <div *ngIf="progressMap.get('Hike')" class="sport-item">
+          <div class="sport-icon hike-icon"><fa-icon [icon]="faHike"></fa-icon></div>
+          <div class="sport-content">
+            <p class="sport-rank">Hike</p>
+            <p class="sport-distance">{{progressMap.get('Hike')/1000 | number:'1.0-1'}} km</p>
+          </div>
+        </div>
+        <div *ngIf="progressMap.get('Swim')" class="sport-item">
+          <div class="sport-icon swim-icon"><fa-icon [icon]="faSwim"></fa-icon></div>
+          <div class="sport-content">
+            <p class="sport-rank">Swim</p>
+            <p class="sport-distance">{{progressMap.get('Swim')/1000 | number:'1.0-1'}} km</p>
+          </div>
+        </div>
+        <div *ngIf="progressMap.get('Snowboard')" class="sport-item">
+          <div class="sport-icon snowboard-icon"><fa-icon [icon]="faSnowboard"></fa-icon></div>
+          <div class="sport-content">
+            <p class="sport-rank">Snowboard</p>
+            <p class="sport-distance">{{progressMap.get('Snowboard')/1000 | number:'1.0-1'}} km</p>
+          </div>
+        </div>
+        <div *ngIf="progressMap.get('AlpineSki')" class="sport-item">
+          <div class="sport-icon alpineski-icon"><fa-icon [icon]="faAlpineSki"></fa-icon></div>
+          <div class="sport-content">
+            <p class="sport-rank">Alpine Ski</p>
+            <p class="sport-distance">{{progressMap.get('AlpineSki')/1000 | number:'1.0-1'}} km</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div *ngIf="!athleteData" class="text-center empty-state">
-        <p>No data available</p>
-    </div>
-
-    <!-- Navigation and Sync -->
-    <div class="actions-footer">
-        <div class="row">
-            <div class="col-6 text-start" (click)="onClickPreviousChallenge()">
-                <span class="nav-arrow">←</span>
-            </div>
-            <div class="col-6 text-end" (click)="onClickNextChallenge()">
-                <span class="nav-arrow">→</span>
-            </div>
-        </div>
-
-        <div class="text-center sync-section">
-            <p class="error-message">{{ errorMessage }}</p>
-            <button class="btn btn-sync" (click)="onSync()">
-                <span [class.fa-spin]="isSyncing">
-                    <fa-icon [icon]="faSync"></fa-icon>
-                </span>
-                &nbsp;
-                <span>Sync data</span>
-            </button>
-        </div>
-    </div>
+  <div *ngIf="!athleteData" class="text-center empty-state">
+    <p>No data available</p>
+  </div>
 </div>
