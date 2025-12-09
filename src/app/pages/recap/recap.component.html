@@ -1,131 +1,118 @@
-<div class="container theme-hot-summer">
-    <div class=" text-center">
-        <h1 class="title">RECAP {{currentYear}}</h1>
+<div class="container theme-year-in-sport">
+    <div class="recap-header text-center">
+        <h1 class="title">YOUR YEAR IN SPORT</h1>
+        <p class="subtitle">{{currentYear}}</p>
+    </div>
 
-        <h4 class="progress-text"> {{totalDistance | number}} km</h4>
-        <!-- progress bar -->
-        <div class="progress-box">
-            <div class="progress" style="height: 30px;">
-                <div class="progress-bar bg-secondary" role="progressbar" [style.width.%]="progress.ride"
-                    aria-valuemax="1000">
-                    <fa-icon [icon]="faRide"></fa-icon>
+    <div *ngIf="athleteData" class="athlete-card">
+        <!-- Athlete Info -->
+        <div class="athlete-info text-center">
+            <img [src]="athleteData.athlete.imgURL" class="athlete-avatar" />
+            <h2 class="athlete-name">{{athleteData.athlete.name}}</h2>
+            <p class="total-distance">{{athleteData.totalDistance/1000 | number:'1.0-1'}} km</p>
+            <p class="new-distance" *ngIf="athleteData.totalNewDistance > 0">
+                +{{athleteData.totalNewDistance/1000 | number:'1.0-1'}} km new
+            </p>
+        </div>
+
+        <!-- Top Sports Section -->
+        <div class="top-sports">
+            <h3 class="section-title">TOP SPORTS</h3>
+            
+            <div class="sports-list">
+                <!-- Run -->
+                <div *ngIf="progressMap.get('Run')" class="sport-item">
+                    <div class="sport-icon run-icon">
+                        <fa-icon [icon]="faRun"></fa-icon>
+                    </div>
+                    <div class="sport-content">
+                        <p class="sport-rank">#1 Run</p>
+                        <p class="sport-distance">{{progressMap.get('Run')/1000 | number:'1.0-1'}} km</p>
+                    </div>
                 </div>
-                <div class="progress-bar bg-info" role="progressbar" [style.width.%]="progress.run"
-                    aria-valuemax="1000">
-                    <fa-icon [icon]="faRun"></fa-icon>
+
+                <!-- Ride -->
+                <div *ngIf="progressMap.get('Ride')" class="sport-item">
+                    <div class="sport-icon ride-icon">
+                        <fa-icon [icon]="faRide"></fa-icon>
+                    </div>
+                    <div class="sport-content">
+                        <p class="sport-rank">#2 Ride</p>
+                        <p class="sport-distance">{{progressMap.get('Ride')/1000 | number:'1.0-1'}} km</p>
+                    </div>
                 </div>
-                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="progress.snowboard"
-                    aria-valuemax="1000">
-                    <fa-icon [icon]="faSnowboard"></fa-icon>
+
+                <!-- Hike -->
+                <div *ngIf="progressMap.get('Hike')" class="sport-item">
+                    <div class="sport-icon hike-icon">
+                        <fa-icon [icon]="faHike"></fa-icon>
+                    </div>
+                    <div class="sport-content">
+                        <p class="sport-rank">#3 Hike</p>
+                        <p class="sport-distance">{{progressMap.get('Hike')/1000 | number:'1.0-1'}} km</p>
+                    </div>
                 </div>
-                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="progress.alpineSki"
-                    aria-valuemax="1000">
-                    <fa-icon [icon]="faAlpineSki"></fa-icon>
+
+                <!-- Swim -->
+                <div *ngIf="progressMap.get('Swim')" class="sport-item">
+                    <div class="sport-icon swim-icon">
+                        <fa-icon [icon]="faSwim"></fa-icon>
+                    </div>
+                    <div class="sport-content">
+                        <p class="sport-rank">#4 Swim</p>
+                        <p class="sport-distance">{{progressMap.get('Swim')/1000 | number:'1.0-1'}} km</p>
+                    </div>
                 </div>
-                <div class="progress-bar bg-warning" role="progressbar" [style.width.%]="progress.swim"
-                    aria-valuemax="1000">
-                    <fa-icon [icon]="faSwim"></fa-icon>
+
+                <!-- Snowboard -->
+                <div *ngIf="progressMap.get('Snowboard')" class="sport-item">
+                    <div class="sport-icon snowboard-icon">
+                        <fa-icon [icon]="faSnowboard"></fa-icon>
+                    </div>
+                    <div class="sport-content">
+                        <p class="sport-rank">#5 Snowboard</p>
+                        <p class="sport-distance">{{progressMap.get('Snowboard')/1000 | number:'1.0-1'}} km</p>
+                    </div>
                 </div>
-                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="progress.hike"
-                    aria-valuemax="1000">
-                    <fa-icon [icon]="faHike"></fa-icon>
+
+                <!-- AlpineSki -->
+                <div *ngIf="progressMap.get('AlpineSki')" class="sport-item">
+                    <div class="sport-icon alpineski-icon">
+                        <fa-icon [icon]="faAlpineSki"></fa-icon>
+                    </div>
+                    <div class="sport-content">
+                        <p class="sport-rank">#6 Alpine Ski</p>
+                        <p class="sport-distance">{{progressMap.get('AlpineSki')/1000 | number:'1.0-1'}} km</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div *ngIf="!athleteData" class="text-center empty-state">
+        <p>No data available</p>
+    </div>
 
-    <div class="container">
+    <!-- Navigation and Sync -->
+    <div class="actions-footer">
         <div class="row">
-            <div class="col-1">#</div>
-            <div class="col-1"></div>
-            <div class="col-2"></div>
-            <div class="col-3">Athlete</div>
-            <div class="col-5 text-center">Distance</div>
-        </div>
-        <hr>
-        <div *ngFor="let athlete of athletesData, let i = index">
-            <div class="row">
-                <div class="col-1">{{i+1}}</div>
-                <div class="col-1">
-                    <fa-icon *ngIf="i === 0" [icon]="faCrown" class="icon-gold "></fa-icon>
-                    <fa-icon *ngIf="i === 1" [icon]="faTrophy" class="icon-silver"></fa-icon>
-                    <fa-icon *ngIf="i === 2" [icon]="faTrophy" class="icon-bronze"></fa-icon>
-                    <fa-icon *ngIf="i === athletesData.length -1" [icon]="faPoop" class="icon-poop"></fa-icon>
-                </div>
-                <div class="col-2">
-                    <img [src]="athlete.athlete.imgURL" width="60px" />
-                </div>
-                <div class="col-3">
-                    <p class="athlete-name"> {{athlete.athlete.name}}</p>
-                </div>
-                <div class="col-5">
-                    <div *ngFor="let activity of athlete.activities">
-                        <div *ngIf="activity.sportType === 'Ride'" class="row">
-                            <div class="col-5"> <fa-icon [icon]="faRide" class="text-secondary my-icon"></fa-icon>
-                            </div>
-                            <div class="col-7 detail-distance">{{activity.distance| number:'1.1-1'}} km</div>
-                        </div>
-                        <div *ngIf="activity.sportType === 'Run'" class="row">
-                            <div class="col-5"> <fa-icon [icon]="faRun" class="text-info"></fa-icon>
-                                <span class="weight">x2</span>
-                            </div>
-                            <div class="col-7 detail-distance">{{activity.distance| number:'1.1-1'}} km</div>
-                        </div>
-                        <div *ngIf="activity.sportType === 'Snowboard'" class="row">
-                            <div class="col-5"> <fa-icon [icon]="faSnowboard" class="text-success my-icon"></fa-icon>
-                            </div>
-                            <div class="col-7 detail-distance">{{activity.distance | number:'1.1-1'}} km</div>
-                        </div>
-                        <div *ngIf="activity.sportType === 'AlpineSki'" class="row">
-                            <div class="col-5"> <fa-icon [icon]="faAlpineSki" class="text-primary my-icon"></fa-icon>
-                            </div>
-                            <div class="col-7 detail-distance">{{activity.distance| number:'1.1-1'}} km</div>
-                        </div>
-                        <div *ngIf="activity.sportType === 'Swim'" class="row">
-                            <div class="col-5">
-                                <fa-icon [icon]="faSwim" class="text-warning"></fa-icon>
-                                <span class="weight">x10</span>
-                            </div>
-                            <div class="col-7 detail-distance">{{activity.distance| number:'1.1-1'}} km</div>
-                        </div>
-                        <div *ngIf="activity.sportType === 'Hike'" class="row">
-                            <div class="col-5">
-                                <fa-icon [icon]="faHike" class="text-danger my-icon"></fa-icon>
-                                <span class="weight">x3</span>
-                            </div>
-                            <div class="col-7 detail-distance">{{activity.distance| number:'1.1-1'}} km</div>
-                        </div>
-                    </div>
-                    <!-- <hr> -->
-                    <div class="row">
-                        <div class="ath-total-distance-box">
-                            <span *ngIf="athlete.totalNewDistance > 0" class="new-distance">
-                                (+{{athlete.totalNewDistance/1000 | number:'1.0-1'}}km) </span>
-                            <span class="distance">{{athlete.totalDistance/1000 | number:'1.0-1'}} km</span>
-
-                        </div>
-                    </div>
-                </div>
+            <div class="col-6 text-start" (click)="onClickPreviousChallenge()">
+                <span class="nav-arrow">←</span>
             </div>
-            <hr>
+            <div class="col-6 text-end" (click)="onClickNextChallenge()">
+                <span class="nav-arrow">→</span>
+            </div>
+        </div>
+
+        <div class="text-center sync-section">
+            <p class="error-message">{{ errorMessage }}</p>
+            <button class="btn btn-sync" (click)="onSync()">
+                <span [class.fa-spin]="isSyncing">
+                    <fa-icon [icon]="faSync"></fa-icon>
+                </span>
+                &nbsp;
+                <span>Sync data</span>
+            </button>
         </div>
     </div>
-
-
-    <div class="row">
-        <div class="col-6 text-start" (click)="onClickPreviousChallenge()"> ← </div>
-        <div class="col-6 text-end" (click)="onClickNextChallenge()"> →</div>
-    </div>
-
-
-    <div class="text-center">
-        <p class="error-message"> {{ errorMessage }} </p>
-        <button class="btn btn-sync" (click)="onSync()">
-            <span [class.fa-spin]="isSyncing"><fa-icon [icon]="faSync" class="fa-spin"></fa-icon></span>
-            &nbsp;
-            <span>Sync data</span>
-        </button>
-    </div>
-
 </div>
