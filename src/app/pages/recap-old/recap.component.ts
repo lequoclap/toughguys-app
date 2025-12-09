@@ -17,7 +17,7 @@ import { CHALLENGES } from 'src/app/challenges';
 })
 export class RecapComponent {
 
-  public athleteData: Athlete | null = null;
+  public athletesData: Athlete[] = [];
   public errorMessage = '';
   public totalDistance = 0;
   public countdownText = '';
@@ -64,12 +64,13 @@ export class RecapComponent {
       this.router.navigate(['/login']);
     }
     this.route.queryParams.subscribe(params => {
-      // Auto-detect current year from system if not provided
-      this.currentYear = params['year'] ? parseInt(params['year']) : new Date().getFullYear();
+      this.currentYear = parseInt(params['year'] || new Date().getFullYear());
       this.challenge = {
         start: this.currentYear + '-01-01 00:00:00',
         end: this.currentYear + '-12-31 23:59:59',
       }
+
+
     })
     this.getRecap();
   }
@@ -118,25 +119,21 @@ export class RecapComponent {
     this.progressMap.clear();
     // load the recap
     console.log("load athlete data 1")
-    const loggedInAthleteId = this.cookieService.get(config.cookie.athleteId);
-    
     this.athleteService.getDashboardData(this.challenge.start, this.challenge.end).subscribe({
       next: (res) => {
-        // Get only the logged-in athlete's data
-        const athlete = res.data.find((athlete) => athlete.athlete.id === loggedInAthleteId);
-        
-        if (athlete) {
-          this.athleteData = athlete;
-          
+        this.athletesData = res.data;
+
+        //adjust data
+        this.athletesData.forEach((item) => {
           // init athlete total distance
-          this.athleteData.totalDistance = 0
-          this.athleteData.totalNewDistance = 0
+          item.totalDistance = 0
+          item.totalNewDistance = 0
 
           //filter to remove unqualified SportType
-          this.athleteData.activities = this.athleteData.activities.filter((activity) => {
+          item.activities = item.activities.filter((activity) => {
             return (Object.values(SportType).includes(activity.sportType))
           })
-          this.athleteData.activities.forEach((activity) => {
+          item.activities.forEach((activity) => {
             // add weight
             activity.distance = activity.distance as number * SPORT_WEIGHT_MAP.get(activity.sportType)!;
 
@@ -146,16 +143,28 @@ export class RecapComponent {
             // count total distance
             this.totalDistance += activity.distance;
 
-            // athlete total distance
-            this.athleteData!.totalDistance += activity.distance;
+            // athletes total distance
+            item.totalDistance += activity.distance;
 
-            // athlete total new distance
-            this.athleteData!.totalNewDistance += activity.newDistance * SPORT_WEIGHT_MAP.get(activity.sportType)!;
+            // athletes total new distance
+            item.totalNewDistance += activity.newDistance * SPORT_WEIGHT_MAP.get(activity.sportType)!;
 
             activity.distance = Math.round(activity.distance / 100) / 10;
           })
+        })
+        // ranking by total distance
+        this.athletesData.sort((a, b) => b.totalDistance - a.totalDistance);
 
-          this.totalDistance = Math.floor(this.totalDistance / 1000);
+        this.totalDistance = Math.floor(this.totalDistance / 1000);
+        this.progressMap = this.progressMap;
+
+        this.progress = {
+          ride: this.progressMap.get(SportType.Ride) / 1000 / this.challenge.goal * 100,
+          snowboard: this.progressMap.get(SportType.Snowboard) / 1000 / this.challenge.goal * 100,
+          hike: this.progressMap.get(SportType.Hike) / 1000 / this.challenge.goal * 100,
+          run: this.progressMap.get(SportType.Run) / 1000 / this.challenge.goal * 100,
+          swim: this.progressMap.get(SportType.Swim) / 1000 / this.challenge.goal * 100,
+          alpineSki: this.progressMap.get(SportType.AlpineSki) / 1000 / this.challenge.goal * 100,
         }
 
       },
