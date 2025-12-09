@@ -9,14 +9,9 @@
       <img [src]="athleteData.athlete.imgURL" class="athlete-avatar" />
       <h2 class="athlete-name">{{athleteData.athlete.name}}</h2>
       <p class="total-distance">{{athleteData.totalDistance/1000 | number:'1.0-1'}} km</p>
-      <p class="new-distance" *ngIf="athleteData.totalNewDistance > 0">
-        +{{athleteData.totalNewDistance/1000 | number:'1.0-1'}} km new
-      </p>
-      <p class="total-activities">{{totalSports}} Sports</p>
     </div>
-
     <div class="top-sports">
-      <h3 class="section-title">TOP SPORTS</h3>
+      <h3 class="section-title">TOP {{totalSports}} SPORTS</h3>
       <div class="sports-list">
         <div *ngFor="let sport of sortedSports" class="sport-item" [ngSwitch]="sport.sportType">
           <div class="sport-icon" [ngClass]="sport.sportType.toLowerCase() + '-icon'">
