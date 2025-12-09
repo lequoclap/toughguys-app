@@ -39,7 +39,7 @@ export class RecapComponent {
   faPoop = faPoop;
 
   public progressMap = new Map();
-  public sortedSports: Array<{sportType: string, distance: number}> = [];
+  public sortedSports: Array<{sportType: string, distance: number, rank: number}> = [];
   
   public isAdmin = false;
 
