@@ -1,360 +1,49 @@
-hr {
-    border: 1px solid white;
-    margin: 10px;
-}
-
-.btn-sync {
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    background-color: orange;
-    opacity: 90%;
-    margin-bottom: 20px;
-}
-
-.btn-hard-sync {
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    background-color: rgb(177, 172, 164);
-    opacity: 90%;
-    margin-bottom: 20px;
-}
-
-.progress-box {
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.progress-text {
-    color: #d9a74a;
-    font-weight: 800;
-    font-size: x-large;
-}
-
-.icon-gold {
-    color: gold;
-}
-
-.icon-silver {
-    color: silver;
-}
-
-.icon-bronze {
-    color: #CD7F32;
-}
-
-.icon-poop {
-    color: #e37dea;
-}
-
-.my-icon {
-    filter: drop-shadow(0 0 0.1rem white);
-}
-
-.weight {
-    margin-left: 3px;
-    font-size: 10px
-}
-
-.detail-distance {
-    text-align: end;
-    padding-right: 10px;
-}
-
-.athlete-name {
-    padding-left: 5px;
-}
-
-.ath-total-distance-box {
-    text-align: end;
-    padding-right: 10px;
-
-    .distance {
-        color: orange;
-        font-weight: bold;
-    }
-
-    .new-distance {
-        color: greenyellow;
-        font-size: 12px;
-    }
-}
-
-span {
-    display: inline-block;
-}
-
+hr { border: 1px solid white; margin: 10px; }
+.btn-sync { color: #fff; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; background-color: orange; opacity: 90%; margin-bottom: 20px; }
 .theme-year-in-sport {
   background: linear-gradient(135deg, #0a2342 0%, #0f3557 100%);
-  min-height: 100vh;
-  padding: 40px 20px;
-  color: #fff;
-
-  .recap-header {
-    margin-bottom: 60px;
-
-    .title {
-      font-size: 3.5rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .subtitle {
-      font-size: 1.5rem;
-      color: #ffd60a;
-      font-weight: 600;
-    }
-  }
-
-  .athlete-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 50px 30px;
-    margin-bottom: 40px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .athlete-info {
-    margin-bottom: 60px;
-
-    .athlete-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid #ffd60a;
-      margin-bottom: 20px;
-      object-fit: cover;
-    }
-
-    .athlete-name {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .total-distance {
-      font-size: 3rem;
-      font-weight: 900;
-      color: #ffd60a;
-      margin: 0;
-    }
-
-    .new-distance {
-      font-size: 1.1rem;
-      color: #90ee90;
-      margin-top: 10px;
-    }
-  }
-
-  .top-sports {
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 40px;
-      text-align: center;
-      color: #ffd60a;
-    }
-
-    .sports-list {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
-
-    .sport-item {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: #ffd60a;
-        transform: translateY(-3px);
-      }
-
-      .sport-icon {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        flex-shrink: 0;
-
-        &.run-icon {
-          background: #4ecdc4;
-          color: #fff;
-        }
-
-        &.ride-icon {
-          background: #ffd60a;
-          color: #0a2342;
-        }
-
-        &.hike-icon {
-          background: #ff6b6b;
-          color: #fff;
-        }
-
-        &.swim-icon {
-          background: #4d96ff;
-          color: #fff;
-        }
-
-        &.snowboard-icon {
-          background: #95e1d3;
-          color: #0a2342;
-        }
-
-        &.alpineski-icon {
-          background: #a8dadc;
-          color: #0a2342;
-        }
-      }
-
-      .sport-content {
-        flex-grow: 1;
-
-        .sport-rank {
-          font-size: 1.1rem;
-          color: #ffd60a;
-          font-weight: 600;
-          margin: 0;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .sport-distance {
-          font-size: 2rem;
-          font-weight: 900;
-          margin: 5px 0 0 0;
-          color: #fff;
-        }
-      }
-    }
-  }
-
-  .empty-state {
-    padding: 100px 20px;
-    font-size: 1.3rem;
-    color: #999;
-  }
-
-  .actions-footer {
-    margin-top: 60px;
-
-    .nav-arrow {
-      font-size: 2rem;
-      cursor: pointer;
-      color: #ffd60a;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      display: inline-block;
-
-      &:hover {
-        transform: scale(1.3);
-      }
-    }
-
-    .sync-section {
-      margin-top: 30px;
-
-      .error-message {
-        color: #ff6b6b;
-        margin-bottom: 15px;
-        min-height: 20px;
-      }
-
-      .btn-sync {
-        background: linear-gradient(135deg, #ffd60a 0%, #ffc300 100%);
-        color: #0a2342;
-        border: none;
-        padding: 15px 40px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        border-radius: 50px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-
-        &:hover {
-          transform: scale(1.05);
-          box-shadow: 0 10px 30px rgba(255, 214, 10, 0.4);
-        }
-
-        &:active {
-          transform: scale(0.98);
-        }
-
-        .fa-spin {
-          display: inline-block;
-          animation: spin 1s linear infinite;
-        }
-      }
-    }
-  }
+  min-height: 100vh; padding: 40px 20px; color: #fff;
+  .recap-header { margin-bottom: 60px; }
+  .title { font-size: 3.5rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,.3); }
+  .subtitle { font-size: 1.5rem; color: #ffd60a; font-weight: 600; }
+  .athlete-card { background: rgba(255,255,255,.05); border-radius: 20px; padding: 50px 30px; margin-bottom: 40px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); }
+  .athlete-info { margin-bottom: 60px; }
+  .athlete-avatar { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #ffd60a; margin-bottom: 20px; object-fit: cover; }
+  .athlete-name { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+  .total-distance { font-size: 3rem; font-weight: 900; color: #ffd60a; margin: 0; }
+  .new-distance { font-size: 1.1rem; color: #90ee90; margin-top: 10px; }
+  .section-title { font-size: 1.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 40px; text-align: center; color: #ffd60a; }
+  .sports-list { display: flex; flex-direction: column; gap: 25px; }
+  .sport-item { display: flex; align-items: center; gap: 20px; padding: 20px; background: rgba(255,255,255,.08); border-radius: 15px; border: 1px solid rgba(255,255,255,.1); transition: all .3s; }
+  .sport-item:hover { background: rgba(255,255,255,.12); border-color: #ffd60a; transform: translateY(-3px); }
+  .sport-icon { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
+  .run-icon { background: #4ecdc4; color: #fff; }
+  .ride-icon { background: #ffd60a; color: #0a2342; }
+  .hike-icon { background: #ff6b6b; color: #fff; }
+  .swim-icon { background: #4d96ff; color: #fff; }
+  .snowboard-icon { background: #95e1d3; color: #0a2342; }
+  .alpineski-icon { background: #a8dadc; color: #0a2342; }
+  .sport-rank { font-size: 1.1rem; color: #ffd60a; font-weight: 600; margin: 0; text-transform: uppercase; letter-spacing: .5px; }
+  .sport-distance { font-size: 2rem; font-weight: 900; margin: 5px 0 0 0; color: #fff; }
+  .empty-state { padding: 100px 20px; font-size: 1.3rem; color: #999; }
+  .actions-footer { margin-top: 60px; }
+  .nav-arrow { font-size: 2rem; cursor: pointer; color: #ffd60a; font-weight: bold; transition: all .3s; display: inline-block; }
+  .nav-arrow:hover { transform: scale(1.3); }
+  .sync-section { margin-top: 30px; }
+  .error-message { color: #ff6b6b; margin-bottom: 15px; min-height: 20px; }
+  .sync-section .btn-sync { background: linear-gradient(135deg, #ffd60a 0%, #ffc300 100%); color: #0a2342; border: none; padding: 15px 40px; font-size: 1.1rem; font-weight: 700; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; }
+  .sync-section .btn-sync:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(255,214,10,.4); }
+  .sync-section .btn-sync:active { transform: scale(.98); }
+  .fa-spin { display: inline-block; animation: spin 1s linear infinite; }
 }
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@media (max-width: 768px) {
-  .theme-year-in-sport {
-    padding: 20px 15px;
-
-    .recap-header .title {
-      font-size: 2rem;
-    }
-
-    .athlete-card {
-      padding: 30px 20px;
-    }
-
-    .athlete-info .athlete-avatar {
-      width: 100px;
-      height: 100px;
-    }
-
-    .athlete-info .athlete-name {
-      font-size: 1.8rem;
-    }
-
-    .athlete-info .total-distance {
-      font-size: 2.2rem;
-    }
-
-    .top-sports .sport-item {
-      flex-direction: column;
-      text-align: center;
-
-      .sport-icon {
-        width: 70px;
-        height: 70px;
-        font-size: 1.5rem;
-      }
-    }
-  }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@media (max-width:768px) {
+  .theme-year-in-sport { padding: 20px 15px; }
+  .title { font-size: 2rem !important; }
+  .athlete-card { padding: 30px 20px; }
+  .athlete-avatar { width: 100px !important; height: 100px !important; }
+  .athlete-name { font-size: 1.8rem !important; }
+  .total-distance { font-size: 2.2rem !important; }
+  .sport-item { flex-direction: column; text-align: center; }
+  .sport-icon { width: 70px !important; height: 70px !important; font-size: 1.5rem !important; }
 }
