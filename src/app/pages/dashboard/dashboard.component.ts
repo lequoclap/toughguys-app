@@ -163,6 +163,10 @@ export class DashboardComponent {
             return (Object.values(SportType).includes(activity.sportType))
           })
           item.activities.forEach((activity) => {
+            // merge VirtualRide distance to Ride
+            if (activity.sportType === SportType.VirtualRide) {
+              activity.sportType = SportType.Ride;
+            }
             // add weight
             activity.distance = activity.distance as number * SPORT_WEIGHT_MAP.get(activity.sportType)!;
 
