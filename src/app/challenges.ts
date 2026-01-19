@@ -1,10 +1,10 @@
 export const CHALLENGES = [
     {
         id: 17,
-        goal: 20000,
-        name: '2026',
+        goal: 12000,
+        name: 'Head to IM70.3 Danang 2026',
         start: '2026-01-01 00:00:00',
-        end: '2027-01-01 00:00:00',
+        end: '2026-07-01 00:00:00',
         icon: 'triathlon-icon.png',
         theme: 'theme-lunar-newyear-2023'
     }, 
