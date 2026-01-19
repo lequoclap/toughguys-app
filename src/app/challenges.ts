@@ -6,7 +6,7 @@ export const CHALLENGES = [
         start: '2026-01-01 00:00:00',
         end: '2027-01-01 00:00:00',
         icon: 'triathlon-icon.png',
-        theme: 'theme-early-summer-2023'
+        theme: 'theme-lunar-newyear-2023'
     }, 
   {
         id: 16,
