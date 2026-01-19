@@ -9,3 +9,5 @@ export const SPORT_WEIGHT_MAP = new Map([
     [SportType.AlpineSki, 1]
 ]);
 
+export const totalDistanceThreshold = 100000; // 100km in meters
+

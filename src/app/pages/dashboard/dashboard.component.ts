@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SPORT_WEIGHT_MAP } from 'src/app/const';
+import { SPORT_WEIGHT_MAP, totalDistanceThreshold } from 'src/app/const';
 import { Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
@@ -181,6 +181,9 @@ export class DashboardComponent {
             activity.distance = Math.round(activity.distance / 100) / 10;
           })
         })
+        // filter athletes with totalDistance > 100km
+        this.athletesData = this.athletesData.filter(athlete => athlete.totalDistance > totalDistanceThreshold);
+
         // ranking by total distance
         this.athletesData.sort((a, b) => b.totalDistance - a.totalDistance);
 

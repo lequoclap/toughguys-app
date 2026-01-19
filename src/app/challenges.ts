@@ -1,4 +1,13 @@
 export const CHALLENGES = [
+    {
+        id: 17,
+        goal: 20000,
+        name: '2026',
+        start: '2026-01-01 00:00:00',
+        end: '2027-01-01 00:00:00',
+        icon: 'ironman-icon.png',
+        theme: 'theme-early-summer-2023'
+    }, 
   {
         id: 16,
         goal: 12000,
