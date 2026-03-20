@@ -167,6 +167,10 @@ export class DashboardComponent {
             if (activity.sportType === SportType.VirtualRide) {
               activity.sportType = SportType.Ride;
             }
+            // merge TrailRun distance to Run
+            if (activity.sportType === SportType.TrailRun) {
+              activity.sportType = SportType.Run;
+            }
             // add weight
             activity.distance = activity.distance as number * SPORT_WEIGHT_MAP.get(activity.sportType)!;
 
