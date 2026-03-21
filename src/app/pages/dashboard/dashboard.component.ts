@@ -188,6 +188,19 @@ export class DashboardComponent {
 
             activity.distance = Math.round(activity.distance / 100) / 10;
           })
+
+          // Consolidate activities with the same sportType (after merging VirtualRide->Ride, TrailRun->Run)
+          const consolidatedActivities = new Map<string, any>();
+          item.activities.forEach((activity) => {
+            if (consolidatedActivities.has(activity.sportType)) {
+              const existing = consolidatedActivities.get(activity.sportType);
+              existing.distance += activity.distance;
+              existing.newDistance += activity.newDistance;
+            } else {
+              consolidatedActivities.set(activity.sportType, { ...activity });
+            }
+          });
+          item.activities = Array.from(consolidatedActivities.values());
         })
         // filter athletes with totalDistance > 100km
         this.athletesData = this.athletesData.filter(athlete => athlete.totalDistance > totalDistanceThreshold);
