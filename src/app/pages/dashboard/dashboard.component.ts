@@ -5,7 +5,21 @@ import { SPORT_WEIGHT_MAP, totalDistanceThreshold } from 'src/app/const';
 import { Athlete } from 'src/app/datatypes/APIDataType';
 import { SportType } from 'src/app/enum';
 import { AthleteService } from 'src/app/services/athlete.service';
-import { faCrown, faPersonBiking, faPersonHiking, faPersonSkiing, faPersonSwimming, faRunning, faSnowboarding, faSync, faTrophy, faPoop } from '@fortawesome/free-solid-svg-icons';
+import { 
+  faCrown, 
+  faPersonBiking, 
+  faPersonHiking, 
+  faPersonSkiing, 
+  faPersonSwimming, 
+  faRunning, 
+  faSnowboarding, 
+  faSync, 
+  faTrophy, 
+  faPoop,
+  faChevronLeft,
+  faChevronRight,
+  IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
 import { config } from 'src/app/config';
 import { CHALLENGES } from 'src/app/challenges';
@@ -28,16 +42,20 @@ export class DashboardComponent {
   public challenge: any = {};
   currentChallengeId = 0;
 
+  // Icons
   faRide = faPersonBiking;
   faHike = faPersonHiking;
   faSnowboard = faSnowboarding;
   faRun = faRunning;
+  faRunning = faRunning;
   faSwim = faPersonSwimming;
   faAlpineSki = faPersonSkiing;
   faCrown = faCrown;
   faTrophy = faTrophy;
   faSync = faSync;
   faPoop = faPoop;
+  faChevronLeft = faChevronLeft;
+  faChevronRight = faChevronRight;
 
   public progressMap = new Map();
   public progress = {
@@ -74,65 +92,66 @@ export class DashboardComponent {
     this.getDashboard();
   }
 
+  getActivityIcon(sportType: string): IconDefinition {
+    const iconMap: { [key: string]: IconDefinition } = {
+      'Ride': this.faRide,
+      'Run': this.faRun,
+      'Swim': this.faSwim,
+      'Hike': this.faHike,
+      'Snowboard': this.faSnowboard,
+      'AlpineSki': this.faAlpineSki,
+    };
+    return iconMap[sportType] || this.faRun;
+  }
+
   onSync(): void {
     this.isSyncing = true;
-    //sync
     this.athleteService.syncAthleteData().subscribe({
-      // sync data
       next: (res) => {
         this.errorMessage = res.message;
-        // getDashboard again
         console.log(res)
         console.log(res.status)
         if (res.status == "success") {
           this.getDashboard();
         }
-
       },
       error: (error) => {
         console.error(error)
         this.errorMessage = 'Can not sync data! ' + error;
       },
     }).add(() => {
-      //finally
       this.isSyncing = false;
     })
   }
 
-  // this feature is only for admin
   onHardSync(): void {
-
     this.isHardSyncing = true;
-    //hard sync
     this.athleteService.syncAthleteData(true).subscribe({
-      // sync data
       next: (res) => {
         this.errorMessage = res.message;
-        // getDashboard again
         console.log(res)
         console.log(res.status)
         if (res.status == "success") {
           this.getDashboard();
         }
-
       },
       error: (error) => {
         console.error(error)
         this.errorMessage = 'Can not hard sync data! ' + error;
       },
     }).add(() => {
-      //finally
       this.isHardSyncing = false;
     })
   }
 
   onClickPreviousChallenge(): void {
-    if (this, this.currentChallengeId > 1) {
+    if (this.currentChallengeId > 1) {
       this.router.navigate([], { queryParams: { id: this.currentChallengeId - 1 } }).then(() => {
         window.location.reload();
       })
     }
   }
+
   onClickNextChallenge(): void {
     if (this.currentChallengeId < this.challenges.length) {
       this.router.navigate([], { queryParams: { id: this.currentChallengeId + 1 } }).then(() => {
@@ -141,55 +160,35 @@ export class DashboardComponent {
     }
   }
 
-
-
   private getDashboard(): void {
-    // clear map
     this.progressMap.clear();
-    // load the dashboard
     console.log("load athlete data")
     this.athleteService.getDashboardData(this.challenge.start, this.challenge.end).subscribe({
       next: (res) => {
         this.athletesData = res.data;
 
-        //adjust data
         this.athletesData.forEach((item) => {
-          // init athlete total distance
           item.totalDistance = 0
           item.totalNewDistance = 0
 
-          //filter to remove unqualified SportType
           item.activities = item.activities.filter((activity) => {
             return (Object.values(SportType).includes(activity.sportType))
           })
           item.activities.forEach((activity) => {
-            // merge VirtualRide distance to Ride
             if (activity.sportType === SportType.VirtualRide) {
               activity.sportType = SportType.Ride;
             }
-            // merge TrailRun distance to Run
             if (activity.sportType === SportType.TrailRun) {
               activity.sportType = SportType.Run;
             }
-            // add weight
             activity.distance = activity.distance as number * SPORT_WEIGHT_MAP.get(activity.sportType)!;
-
-            // accumulate to map
             this.progressMap.set(activity.sportType, (this.progressMap.get(activity.sportType) || 0) + activity.distance)
-
-            // count total distance
             this.totalDistance += activity.distance;
-
-            // athletes total distance
             item.totalDistance += activity.distance;
-
-            // athletes total new distance
             item.totalNewDistance += activity.newDistance * SPORT_WEIGHT_MAP.get(activity.sportType)!;
-
             activity.distance = Math.round(activity.distance / 100) / 10;
           })
 
-          // Consolidate activities with the same sportType (after merging VirtualRide->Ride, TrailRun->Run)
           const consolidatedActivities = new Map<string, any>();
           item.activities.forEach((activity) => {
             if (consolidatedActivities.has(activity.sportType)) {
@@ -202,10 +201,8 @@ export class DashboardComponent {
           });
           item.activities = Array.from(consolidatedActivities.values());
         })
-        // filter athletes with totalDistance > 100km
+        
         this.athletesData = this.athletesData.filter(athlete => athlete.totalDistance > totalDistanceThreshold);
-
-        // ranking by total distance
         this.athletesData.sort((a, b) => b.totalDistance - a.totalDistance);
 
         this.totalDistance = Math.floor(this.totalDistance / 1000);
@@ -219,18 +216,14 @@ export class DashboardComponent {
           swim: this.progressMap.get(SportType.Swim) / 1000 / this.challenge.goal * 100,
           alpineSki: this.progressMap.get(SportType.AlpineSki) / 1000 / this.challenge.goal * 100,
         }
-
       },
       error: (e: HttpErrorResponse) => {
         console.error(e)
         this.errorMessage = 'Can not load data! ';
-        //redirect to login if it is unauthozied error
         if (e.status == 401 || e.status == 403 || e.status == 500) {
           this.router.navigate(['/login']);
         }
-
       }
     })
   }
-
 }

@@ -1,13 +1,146 @@
-button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-weight: bold;
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: 
+    radial-gradient(ellipse at top, rgba(249, 115, 22, 0.08), transparent 50%),
+    var(--background);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-card {
+  background: var(--background-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.login-header {
+  margin-bottom: 2rem;
+}
+
+.logo-wrapper {
+  display: inline-flex;
+  margin-bottom: 1.25rem;
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+
+.login-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+
+.login-subtitle {
+  font-size: 0.9375rem;
+  color: var(--foreground-muted);
+  line-height: 1.5;
+}
+
+.login-content {
+  margin-bottom: 2rem;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--background-elevated);
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--accent-muted);
+  color: var(--accent);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+}
+
+.feature-text {
+  font-size: 0.875rem;
+  color: var(--foreground);
+  font-weight: 500;
 }
 
 .btn-strava {
-    background-color: orange;
-    color: white;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: #fc4c02;
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: #e34502;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(252, 76, 2, 0.3);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.strava-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.login-footer {
+  font-size: 0.8125rem;
+  color: var(--foreground-subtle);
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .login-logo {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .login-title {
+    font-size: 1.75rem;
+  }
 }

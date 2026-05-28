@@ -1409,6 +1409,33 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
+"@redis/bloom@5.12.1":
+  version "5.12.1"
+  resolved "https://registry.npmjs.org/@redis/bloom/-/bloom-5.12.1.tgz"
+  integrity sha512-PUUfv+ms7jgPSBVoo/DN4AkPHj4D5TZSd6SbJX7egzBplkYUcKmHRE8RKia7UtZ8bSQbLguLvxVO+asKtQfZWA==
+
+"@redis/client@^5.12.1", "@redis/client@5.12.1":
+  version "5.12.1"
+  resolved "https://registry.npmjs.org/@redis/client/-/client-5.12.1.tgz"
+  integrity sha512-7aPGWeqA3uFm43o19umzdl16CEjK/JQGtSXVPevplTaOU3VJA/rseBC1QvYUz9lLDIMBimc4SW/zrW4S89BaCA==
+  dependencies:
+    cluster-key-slot "1.1.2"
+
+"@redis/json@5.12.1":
+  version "5.12.1"
+  resolved "https://registry.npmjs.org/@redis/json/-/json-5.12.1.tgz"
+  integrity sha512-eOze75esLve4vfqDel7aMX08CNaiLLQS2fV8mpRN9NxPe1rVR4vQyYiW/OgtGUysF6QOr9ANhfxABKNOJfXdKg==
+
+"@redis/search@5.12.1":
+  version "5.12.1"
+  resolved "https://registry.npmjs.org/@redis/search/-/search-5.12.1.tgz"
+  integrity sha512-ItlxbxC9cKI6IU1TLWoczwJCRb6TdmkEpWv05UrPawqaAnWGRu3rcIqsc5vN483T2fSociuyV1UkWIL5I4//2w==
+
+"@redis/time-series@5.12.1":
+  version "5.12.1"
+  resolved "https://registry.npmjs.org/@redis/time-series/-/time-series-5.12.1.tgz"
+  integrity sha512-c6JL6E3EcZJuNqKFz+KM+l9l5mpcQiKvTwgA3blt5glWJ8hjDk0yeHN3beE/MpqYIQ8UEX44ItQzgkE/gCBELQ==
+
 "@schematics/angular@15.0.4":
   version "15.0.4"
   resolved "https://registry.npmjs.org/@schematics/angular/-/angular-15.0.4.tgz"
@@ -2270,6 +2297,11 @@ clone@^1.0.2:
   version "1.0.4"
   resolved "https://registry.npmjs.org/clone/-/clone-1.0.4.tgz"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
+
+cluster-key-slot@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/cluster-key-slot/-/cluster-key-slot-1.1.2.tgz"
+  integrity sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -4881,6 +4913,24 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+redis-url@~0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/redis-url/-/redis-url-0.2.0.tgz"
+  integrity sha512-4HyF3QI0vbmXAMRudLIxnaz/sUGzTEmHBV5swe2keie1ynCrJbCnraDmwrEncI6F0BQz8t2ivYrEZ0Wrq77Yjg==
+  dependencies:
+    redis ">= 0.0.1"
+
+"redis@>= 0.0.1":
+  version "5.12.1"
+  resolved "https://registry.npmjs.org/redis/-/redis-5.12.1.tgz"
+  integrity sha512-LDsoVvb/CpoV9EN3FXvgvSHNJWuCIzl9MiO3ppOevuGLpSGJhwfQjpEwfFJcQvNSddHADDdZaWx0HnmMxRXG7g==
+  dependencies:
+    "@redis/bloom" "5.12.1"
+    "@redis/client" "5.12.1"
+    "@redis/json" "5.12.1"
+    "@redis/search" "5.12.1"
+    "@redis/time-series" "5.12.1"
+
 reflect-metadata@^0.1.2:
   version "0.1.13"
   resolved "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.13.tgz"
@@ -5423,6 +5473,15 @@ sprintf-js@~1.0.2:
   resolved "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
+src@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/src/-/src-1.1.2.tgz"
+  integrity sha512-xOKk/hC+DMAWZVEu0zf/1y2vegH1dQD2W2jldxpFCAnavfrK8IPwECKw5ZDcxhd3+kmzaVyPECMAYVy2WDV9YQ==
+  dependencies:
+    redis-url "~0.2.0"
+    underscore "~1.6.0"
+    uuid "~1.4.1"
+
 ssri@^10.0.0:
   version "10.0.1"
   resolved "https://registry.npmjs.org/ssri/-/ssri-10.0.1.tgz"
@@ -5658,6 +5717,11 @@ ua-parser-js@^0.7.30:
   resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.32.tgz"
   integrity sha512-f9BESNVhzlhEFf2CHMSj40NWOjYPl1YKYbrvIr/hFTDEmLq7SRbWvm7FcdcpCYT95zrOhC7gZSxjdnnTpBcwVw==
 
+underscore@~1.6.0:
+  version "1.6.0"
+  resolved "https://registry.npmjs.org/underscore/-/underscore-1.6.0.tgz"
+  integrity sha512-z4o1fvKUojIWh9XuaVLUDdf86RQiq13AC1dmHbTpoyuu+bquHms76v16CjycCbec87J7z0k//SiQVk0sMdFmpQ==
+
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-2.0.0.tgz"
@@ -5748,6 +5812,11 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+uuid@~1.4.1:
+  version "1.4.2"
+  resolved "https://registry.npmjs.org/uuid/-/uuid-1.4.2.tgz"
+  integrity sha512-woV5Ei+GBJyrqMXt0mJ9p8/I+47LYKp/4urH76FNTMjl22EhLPz1tNrQufTsrFf/PYV/7ctSZYAK7fKPWQKg+Q==
 
 validate-npm-package-license@^3.0.4:
   version "3.0.4"

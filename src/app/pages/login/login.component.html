@@ -1,9 +1,47 @@
-<div class="container text-center">
-    <h1>LOGIN</h1>
-    <div class="form-field center">
-        <button class="btn btn-strava" (click)="connectStrava()">
-            Connect with <b>STRAVA</b>
-        </button>
-    </div>
+<div class="login-page">
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="logo-wrapper">
+          <img src="assets/logo.jpg" alt="ToughGuys Logo" class="login-logo" />
+        </div>
+        <h1 class="login-title">ToughGuys</h1>
+        <p class="login-subtitle">Track your fitness challenges with your team</p>
+      </div>
 
+      <div class="login-content">
+        <div class="features-list">
+          <div class="feature-item">
+            <span class="feature-icon">
+              <fa-icon [icon]="faTrophy"></fa-icon>
+            </span>
+            <span class="feature-text">Compete on leaderboards</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">
+              <fa-icon [icon]="faChartLine"></fa-icon>
+            </span>
+            <span class="feature-text">Track team progress</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">
+              <fa-icon [icon]="faBolt"></fa-icon>
+            </span>
+            <span class="feature-text">Sync with Strava</span>
+          </div>
+        </div>
+
+        <button class="btn-strava" (click)="connectStrava()">
+          <svg class="strava-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/>
+          </svg>
+          <span>Connect with Strava</span>
+        </button>
+      </div>
+
+      <p class="login-footer">
+        Join the challenge. Beat your personal best.
+      </p>
+    </div>
+  </div>
 </div>
