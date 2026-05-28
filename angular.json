@@ -68,7 +68,9 @@
               "browserTarget": "toughguys-app:build:production"
             },
             "development": {
-              "browserTarget": "toughguys-app:build:development"
+              "browserTarget": "toughguys-app:build:development",
+              "disableHostCheck": true,
+              "allowedHosts": ["*"]
             }
           },
           "defaultConfiguration": "development"
