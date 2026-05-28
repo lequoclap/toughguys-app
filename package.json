@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "dev": "ng serve --host 0.0.0.0 --port 5001 --disable-host-check",
+    "dev": "ng serve --configuration mock --host 0.0.0.0 --port 5001 --disable-host-check",
     "start": "ng serve --host 0.0.0.0 --port 5001",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",

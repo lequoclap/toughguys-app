@@ -43,7 +43,7 @@ export class DashboardComponent {
   currentChallengeId = 0;
   
   // Enable mock data for development/demo
-  public useMockData = true;
+  public useMockData = config.useMockData;
 
   // Icons
   faRide = faPersonBiking;

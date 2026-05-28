@@ -1,20 +1,24 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-count-down-timer',
   templateUrl: './count-down-timer.component.html',
   styleUrls: ['./count-down-timer.component.scss']
 })
-export class CountDownTimerComponent {
+export class CountDownTimerComponent implements OnChanges, OnDestroy {
 
   @Input() endDate!: string;
 
   isOver = false;
-  date: any;
-  now: any;
+  targetTime = 0;
+  countdown = {
+    days: '00',
+    hours: '00',
+    minutes: '00',
+    seconds: '00'
+  };
+  private intervalId: ReturnType<typeof setInterval> | null = null;
 
-  targetTime: any = '';
-  difference!: number;
   months: Array<string> = [
     'January',
     'February',
@@ -31,50 +35,79 @@ export class CountDownTimerComponent {
   ];
   currentTime: any = '';
 
-  @ViewChild('days', { static: true }) days!: ElementRef;
-  @ViewChild('hours', { static: true }) hours!: ElementRef;
-  @ViewChild('minutes', { static: true }) minutes!: ElementRef;
-  @ViewChild('seconds', { static: true }) seconds!: ElementRef;
-
-  ngOnInit() {
-
-    let targetDate: any = new Date(this.endDate);
-    this.targetTime = targetDate.getTime()
-
-    this.currentTime = `${this.months[targetDate.getMonth()]
-      } ${targetDate.getDate()}, ${targetDate.getFullYear()}`;
-
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['endDate']?.currentValue) {
+      this.startCountdown();
+    }
   }
 
-  ngAfterViewInit() {
-    setInterval(() => {
-      this.tickTock();
-      this.difference = this.targetTime - this.now;
-      if (this.difference < 0) {
-        this.isOver = true;
-      }
-      this.difference = this.difference / (1000 * 60 * 60 * 24);
-      !isNaN(this.days.nativeElement.innerText)
-        ? (this.days.nativeElement.innerText = Math.max(Math.floor(this.difference), 0))
-        : (this.days.nativeElement.innerHTML = `<img src="https://i.gifer.com/VAyR.gif" />`);
-    }, 1000);
+  ngOnDestroy(): void {
+    this.clearCountdownInterval();
   }
 
-  tickTock() {
-    console.log(this.isOver)
-    if (!this.isOver) {
-      this.date = new Date();
-      this.now = this.date.getTime();
-      this.days.nativeElement.innerText = Math.floor(this.difference);
-      this.hours.nativeElement.innerText = 23 - this.date.getHours();
-      this.minutes.nativeElement.innerText = 60 - this.date.getMinutes();
-      this.seconds.nativeElement.innerText = 60 - this.date.getSeconds();
-    } else {
-      this.days.nativeElement.innerText = 0;
-      this.hours.nativeElement.innerText = 0;
-      this.minutes.nativeElement.innerText = 0;
-      this.seconds.nativeElement.innerText = 0;
+  private startCountdown(): void {
+    const targetDate = this.parseDate(this.endDate);
+    this.targetTime = targetDate.getTime();
+    this.currentTime = `${this.months[targetDate.getMonth()]} ${targetDate.getDate()}, ${targetDate.getFullYear()}`;
+
+    this.clearCountdownInterval();
+    this.updateCountdown();
+    this.intervalId = setInterval(() => this.updateCountdown(), 1000);
+  }
+
+  private updateCountdown(): void {
+    const diffMs = this.targetTime - Date.now();
+
+    if (diffMs <= 0) {
+      this.isOver = true;
+      this.countdown = {
+        days: '00',
+        hours: '00',
+        minutes: '00',
+        seconds: '00'
+      };
+      this.clearCountdownInterval();
+      return;
     }
 
+    this.isOver = false;
+    const totalSeconds = Math.floor(diffMs / 1000);
+    const days = Math.floor(totalSeconds / (24 * 60 * 60));
+    const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+    const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+    const seconds = totalSeconds % 60;
+
+    this.countdown = {
+      days: this.pad(days),
+      hours: this.pad(hours),
+      minutes: this.pad(minutes),
+      seconds: this.pad(seconds)
+    };
+  }
+
+  private clearCountdownInterval(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
+  private parseDate(value: string): Date {
+    const normalized = value.replace(' ', 'T');
+    let parsed = new Date(normalized);
+
+    if (isNaN(parsed.getTime())) {
+      parsed = new Date(value);
+    }
+
+    if (isNaN(parsed.getTime())) {
+      return new Date();
+    }
+
+    return parsed;
+  }
+
+  private pad(value: number): string {
+    return value.toString().padStart(2, '0');
   }
 }

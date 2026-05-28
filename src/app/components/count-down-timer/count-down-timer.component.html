@@ -1,22 +1,22 @@
 <div class="countdown" *ngIf="!isOver">
   <div class="countdown-grid">
     <div class="countdown-item">
-      <span class="countdown-value" #days>00</span>
+      <span class="countdown-value">{{countdown.days}}</span>
       <span class="countdown-label">Days</span>
     </div>
     <div class="countdown-separator">:</div>
     <div class="countdown-item">
-      <span class="countdown-value" #hours>00</span>
+      <span class="countdown-value">{{countdown.hours}}</span>
       <span class="countdown-label">Hours</span>
     </div>
     <div class="countdown-separator">:</div>
     <div class="countdown-item">
-      <span class="countdown-value" #minutes>00</span>
+      <span class="countdown-value">{{countdown.minutes}}</span>
       <span class="countdown-label">Min</span>
     </div>
     <div class="countdown-separator">:</div>
     <div class="countdown-item">
-      <span class="countdown-value" #seconds>00</span>
+      <span class="countdown-value">{{countdown.seconds}}</span>
       <span class="countdown-label">Sec</span>
     </div>
   </div>

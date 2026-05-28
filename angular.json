@@ -57,6 +57,20 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "mock": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "env.ts",
+                  "with": "env.mock.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -69,6 +83,11 @@
             },
             "development": {
               "browserTarget": "toughguys-app:build:development",
+              "disableHostCheck": true,
+              "allowedHosts": ["*"]
+            },
+            "mock": {
+              "browserTarget": "toughguys-app:build:mock",
               "disableHostCheck": true,
               "allowedHosts": ["*"]
             }
