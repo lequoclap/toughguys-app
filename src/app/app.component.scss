@@ -1,36 +1,53 @@
 .theme-app {
-    padding-top: 20px;
-    min-height: 100%;
+    min-height: 100vh;
+    background: var(--background);
 }
 
-.theme-winter-2023 {
-    background: #699fbf
+// Theme accent colors - applied as subtle top bar accents
+.theme-winter-2023::before,
+.theme-autumn-2023::before,
+.theme-typhoon-season-2023::before,
+.theme-hot-summer-2023::before,
+.theme-early-summer-2023::before,
+.theme-sakura-2023::before,
+.theme-lunar-newyear-2023::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    z-index: 1000;
 }
 
-.theme-autumn-2023 {
-    background: #9c6644;
+.theme-winter-2023::before {
+    background: linear-gradient(90deg, #699fbf, #8bb8d4);
 }
 
-.theme-typhoon-season-2023 {
-    background: #487693;
+.theme-autumn-2023::before {
+    background: linear-gradient(90deg, #9c6644, #c4835a);
 }
 
-.theme-hot-summer-2023 {
-    background: #47927E;
+.theme-typhoon-season-2023::before {
+    background: linear-gradient(90deg, #487693, #5a92b3);
 }
 
-.theme-early-summer-2023 {
-    background: #bb4a2e;
+.theme-hot-summer-2023::before {
+    background: linear-gradient(90deg, #47927E, #5db39d);
 }
 
-.theme-sakura-2023 {
-    background: #ab6374;
+.theme-early-summer-2023::before {
+    background: linear-gradient(90deg, #bb4a2e, #d66b4e);
 }
 
-.theme-lunar-newyear-2023 {
-    background: #890a08;
+.theme-sakura-2023::before {
+    background: linear-gradient(90deg, #ab6374, #c98595);
+}
+
+.theme-lunar-newyear-2023::before {
+    background: linear-gradient(90deg, #890a08, #b91c1a);
 }
 
 .theme-year-in-sport app-header {
-  display: none !important;
+    display: none !important;
 }

@@ -1,20 +1,28 @@
-<div class="count-down-timer">
-    <p>Countdown to {{ currentTime }}</p>
-    <div class="wrapper">
-        <div class="description">
-            <p>Days</p>
-            <p>Hours</p>
-            <p>Minutes</p>
-            <p>Seconds</p>
-        </div>
-        <div class="times">
-            <p #days></p>
-            <p #hours></p>
-            <p #minutes></p>
-            <p #seconds></p>
-        </div>
+<div class="countdown" *ngIf="!isOver">
+  <div class="countdown-grid">
+    <div class="countdown-item">
+      <span class="countdown-value" #days>00</span>
+      <span class="countdown-label">Days</span>
     </div>
-    <div *ngIf="isOver" class="wrapper">
-        <p class="time-up">TIME'S UP!!!</p>
+    <div class="countdown-separator">:</div>
+    <div class="countdown-item">
+      <span class="countdown-value" #hours>00</span>
+      <span class="countdown-label">Hours</span>
     </div>
+    <div class="countdown-separator">:</div>
+    <div class="countdown-item">
+      <span class="countdown-value" #minutes>00</span>
+      <span class="countdown-label">Min</span>
+    </div>
+    <div class="countdown-separator">:</div>
+    <div class="countdown-item">
+      <span class="countdown-value" #seconds>00</span>
+      <span class="countdown-label">Sec</span>
+    </div>
+  </div>
+  <p class="countdown-target">ends {{ currentTime }}</p>
+</div>
+
+<div class="countdown-complete" *ngIf="isOver">
+  <span class="complete-badge">Challenge Complete</span>
 </div>

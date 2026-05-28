@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { config } from 'src/app/config';
+import { faTrophy, faChartLine, faBolt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -7,18 +8,15 @@ import { config } from 'src/app/config';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  faTrophy = faTrophy;
+  faChartLine = faChartLine;
+  faBolt = faBolt;
 
   constructor() {
-    console.log("here")
+    console.log("Login page loaded")
   }
 
-  /**
-   * 
-   */
   connectStrava(): void {
-    //redirect to Strava Auth page
     window.location.href = config.stravaAuthURL;
   }
-
-
 }

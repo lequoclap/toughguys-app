@@ -1,1 +1,8 @@
-<img class="logo" src="assets/{{logo||'logo.jpg'}}" width="150px" />
+<header class="header">
+  <div class="header-container">
+    <a href="/" class="logo-link">
+      <img class="logo" [src]="'assets/' + (logo || 'logo.jpg')" alt="ToughGuys Logo" />
+      <span class="logo-text">ToughGuys</span>
+    </a>
+  </div>
+</header>
