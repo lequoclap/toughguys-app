@@ -1,5 +1,15 @@
 export const CHALLENGES = [
     {
+        id: 18,
+        goal: 5000,
+        name: 'Q3 2026',
+        start: '2026-07-01 00:00:00',
+        end: '2026-09-01 00:00:00',
+        icon: 'summer-icon.png',
+        theme: 'theme-early-summer-2023'
+    }, 
+
+  {
         id: 17,
         goal: 12000,
         name: 'Head to IM70.3 Danang 2026',
