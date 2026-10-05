@@ -4,7 +4,7 @@ export const CHALLENGES = [
         goal: 5000,
         name: 'End of 2026',
         start: '2026-10-01 00:00:00',
-        end: '2027-01-01 00:00:00',
+        end: '2026-12-31 23:59:59',
         icon: 'winter.png',
         theme: 'theme-winter-2023'
     }, 
